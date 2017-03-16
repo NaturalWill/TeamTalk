@@ -222,14 +222,14 @@ extern "C" {
         if (nLen % 16 != 0) {
             return -3;
         }
-        // 先申请nLen 个长度，解密完成后的长度应该小于该长度
+        // 先申请nLen 个长度，解密完成后的长度应该小于该长度.
         char* pTmp = (char*)malloc(nLen + 1);
 
         uint32_t nBlocks = nLen / 16;
         AES_KEY aesKey;
         
         const char *key = "12345678901234567890123456789012";
-        AES_set_decrypt_key((const unsigned char*) key, 256, &aesKey);           //设置AES解密密钥
+        AES_set_decrypt_key((const unsigned char*) key, 256, &aesKey);           //设置AES解密密钥.
         for (uint32_t i = 0; i < nBlocks; i++) {
             AES_decrypt(pData + i * 16, (unsigned char*)pTmp + i * 16, &aesKey);
         }

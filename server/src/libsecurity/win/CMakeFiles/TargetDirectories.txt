@@ -1,0 +1,3 @@
+D:/Jier/Downloads/Compressed/TeamTalk-master/server/src/libsecurity/win/CMakeFiles/security.dir
+D:/Jier/Downloads/Compressed/TeamTalk-master/server/src/libsecurity/win/CMakeFiles/ALL_BUILD.dir
+D:/Jier/Downloads/Compressed/TeamTalk-master/server/src/libsecurity/win/CMakeFiles/ZERO_CHECK.dir
