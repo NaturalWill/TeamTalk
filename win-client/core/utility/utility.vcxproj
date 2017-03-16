@@ -14,19 +14,20 @@
     <ProjectGuid>{A29131FE-41A5-4CD5-B6A7-A66A173F912B}</ProjectGuid>
     <RootNamespace>utility</RootNamespace>
     <Keyword>MFCDLLProj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
@@ -66,8 +67,8 @@
       <ModuleDefinitionFile>.\utility.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>..\..\3rdParty\lib;$(SolutionDir)\..\lib\$(Configuration)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>sqlite3.lib;network.lib;mfcs120ud.lib;MSVCRTD.lib;Netapi32.lib</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>MSVCRTD.lib;mfcs120ud.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>sqlite3.lib;network.lib;mfcs140ud.lib;MSVCRTD.lib;Netapi32.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>MSVCRTD.lib;mfcs140ud.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -102,8 +103,8 @@
       <ModuleDefinitionFile>.\utility.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>..\..\3rdParty\lib;$(SolutionDir)\..\lib\$(Configuration)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>sqlite3.lib;network.lib;mfcs120u.lib;MSVCRT.lib;Netapi32.lib</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs120u.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>sqlite3.lib;network.lib;mfcs140u.lib;MSVCRT.lib;Netapi32.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs140u.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

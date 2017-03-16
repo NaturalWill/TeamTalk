@@ -79,7 +79,7 @@ const std::string ws2s(const std::wstring& src)
 	memset(data_to, 0, (src.size() + 1) * wchar_size);
 
 	typedef std::codecvt<wchar_t, char, mbstate_t> convert_facet;
-	mbstate_t out_state = 0;
+	mbstate_t out_state;
 	auto result = std::use_facet<convert_facet>(sys_locale).out(
 		out_state, data_from, data_from_end, data_from_next,
 		data_to, data_to_end, data_to_next);
@@ -112,7 +112,7 @@ const std::wstring s2ws(const std::string& src)
 	wmemset(data_to, 0, src.size() + 1);
 
 	typedef std::codecvt<wchar_t, char, mbstate_t> convert_facet;
-	mbstate_t in_state = 0;
+	mbstate_t in_state ;
 	auto result = std::use_facet<convert_facet>(sys_locale).in(
 		in_state, data_from, data_from_end, data_from_next,
 		data_to, data_to_end, data_to_next);
