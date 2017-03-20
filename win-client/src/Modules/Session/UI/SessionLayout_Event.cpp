@@ -1,7 +1,7 @@
-/******************************************************************************* 
+/*******************************************************************************
  *  @file      SessionLayout_Event.cpp 2014\8\15 13:03:04 $
  *  @author    大佛<dafo@mogujie.com>
- *  @brief     
+ *  @brief
  ******************************************************************************/
 
 #include "stdafx.h"
@@ -26,11 +26,11 @@
 #define  TIMER_WRITING_NOTIFY 2
 
 
-/******************************************************************************/
+ /******************************************************************************/
 
 void SessionLayout::Notify(TNotifyUI& msg)
 {
-	if (_tcsicmp(msg.sType, DUI_MSGTYPE_WINDOWINIT) == 0 )
+	if (_tcsicmp(msg.sType, DUI_MSGTYPE_WINDOWINIT) == 0)
 	{
 		OnWindowInitialized(msg);
 	}
@@ -65,7 +65,7 @@ void SessionLayout::Notify(TNotifyUI& msg)
 			pt.y = rcWindow.top + rcEmotionBtn.top;
 			pt.x = rcWindow.left + rcEmotionBtn.left;
 
-			module::getEmotionModule()->showEmotionDialog(m_sId,pt);
+			module::getEmotionModule()->showEmotionDialog(m_sId, pt);
 		}
 		else if (msg.pSender == m_pBtnSendImage)
 		{
@@ -118,30 +118,32 @@ void SessionLayout::Notify(TNotifyUI& msg)
 			module::getSessionModule()->asynNotifyObserver(module::KEY_SESSION_SHAKEWINDOW_MSG, m_sId);
 			module::getP2PCmdModule()->tcpSendShakeWindowCMD(m_sId);
 		}
-        else if (msg.pSender == m_pBtnScreenShot)
-        {
-            //直接模拟截屏快捷键
-            for (HWND hWnd = GetTopWindow(NULL); hWnd != NULL; hWnd = GetWindow(hWnd, GW_HWNDNEXT))
-            {
-                wchar_t szWndName[MAX_PATH] = { 0 };
-                GetClassName(hWnd, szWndName, MAX_PATH);
-                if (_wcsicmp(szWndName, L"TeamTalkMainDialog"))
-                {
-                    continue;
-                }
+		else if (msg.pSender == m_pBtnScreenShot)
+		{
+			//直接模拟截屏快捷键
+			for (HWND hWnd = GetTopWindow(NULL); hWnd != NULL; hWnd = GetWindow(hWnd, GW_HWNDNEXT))
+			{
+				wchar_t szWndName[MAX_PATH] = { 0 };
+				GetClassName(hWnd, szWndName, MAX_PATH);
+				//LOG__(NET, _T("szWndName: %s\n"), szWndName);
+				if (_wcsicmp(szWndName, L"TeamTalkMainDialog"))
+					//if (_wcsicmp(szWndName, L"MainDialog"))
+				{
+					continue;
+				}
 
-                DWORD dwProcessId = 0;
-                GetWindowThreadProcessId(hWnd, &dwProcessId);
-                if (dwProcessId != GetCurrentProcessId())
-                {
-                    continue;
-                }
+				DWORD dwProcessId = 0;
+				GetWindowThreadProcessId(hWnd, &dwProcessId);
+				if (dwProcessId != GetCurrentProcessId())
+				{
+					continue;
+				}
 
-                ::PostMessage(hWnd, WM_HOTKEY, 0, (LPARAM)MAKELPARAM(MOD_CONTROL | MOD_SHIFT, 0x51));
-                break;
-            }
+				::PostMessage(hWnd, WM_HOTKEY, 0, (LPARAM)MAKELPARAM(MOD_CONTROL | MOD_SHIFT, 0x51));
+				break;
+			}
 
-        }
+		}
 		else if (msg.pSender == m_pBtnadduser)
 		{
 			if (m_bGroupSession)
@@ -150,32 +152,32 @@ void SessionLayout::Notify(TNotifyUI& msg)
 			}
 			else//创建群
 				module::getGroupListModule()->onCreateDiscussionGrpDialog(m_sId);
-		}   
-        else if (msg.pSender == m_pBtnsendfile) //文件传输
-        {
-            module::UserInfoEntity userInfo;
-            if (!module::getUserListModule()->getUserInfoBySId(m_sId, userInfo))
-            {
-                LOG__(ERR, _T("SendFile can't find the sid"));
-                return;
-            }
+		}
+		else if (msg.pSender == m_pBtnsendfile) //文件传输
+		{
+			module::UserInfoEntity userInfo;
+			if (!module::getUserListModule()->getUserInfoBySId(m_sId, userInfo))
+			{
+				LOG__(ERR, _T("SendFile can't find the sid"));
+				return;
+			}
 
-            CFileDialog	fileDlg(TRUE, NULL, NULL, OFN_HIDEREADONLY | OFN_FILEMUSTEXIST
-                , _T("文件|*.*||"), AfxGetMainWnd());
-            fileDlg.m_ofn.Flags |= OFN_NOCHANGEDIR;
-            fileDlg.DoModal();
+			CFileDialog	fileDlg(TRUE, NULL, NULL, OFN_HIDEREADONLY | OFN_FILEMUSTEXIST
+				, _T("文件|*.*||"), AfxGetMainWnd());
+			fileDlg.m_ofn.Flags |= OFN_NOCHANGEDIR;
+			fileDlg.DoModal();
 
-            CString sPathName;
-            POSITION nPos = fileDlg.GetStartPosition();
-            if (nPos != NULL)
-            {
-                sPathName = fileDlg.GetNextPathName(nPos);
-            }
-            if (sPathName.IsEmpty())
-                return;
+			CString sPathName;
+			POSITION nPos = fileDlg.GetStartPosition();
+			if (nPos != NULL)
+			{
+				sPathName = fileDlg.GetNextPathName(nPos);
+			}
+			if (sPathName.IsEmpty())
+				return;
 
-            module::getFileTransferModule()->sendFile(sPathName, m_sId, userInfo.isOnlne());
-        }
+			module::getFileTransferModule()->sendFile(sPathName, m_sId, userInfo.isOnlne());
+		}
 	}
 	else if (msg.sType == _T("return"))
 	{
@@ -276,7 +278,7 @@ void SessionLayout::_CreateMenu(IN const TNotifyUI& msg)
 
 void SessionLayout::_GetGroupNameListByShortName(IN const CString& sShortName, OUT std::vector<string>& nameList)
 {
-	for (int n = 0; n < m_pGroupMemberList->GetCount();++n)
+	for (int n = 0; n < m_pGroupMemberList->GetCount(); ++n)
 	{
 		CListContainerElementUI* pListElement = static_cast<CListContainerElementUI*>(m_pGroupMemberList->GetItemAt(n));
 		if (pListElement)
@@ -318,7 +320,7 @@ void SessionLayout::_GetGroupNameListByShortName(IN const CString& sShortName, O
 
 void SessionLayout::DoEvent(TEventUI& event)
 {
-	if (event.Type == UIEVENT_TIMER  )
+	if (event.Type == UIEVENT_TIMER)
 	{
 		if (event.pSender == this && !m_bGroupSession)
 		{
@@ -347,18 +349,18 @@ void SessionLayout::DoEvent(TEventUI& event)
 	}
 	else if (event.Type == UIEVENT_CONTEXTMENU)
 	{
-		
+
 	}
 	return __super::DoEvent(event);
 }
 
 void SessionLayout::DocmentComplete(IDispatch *pDisp, VARIANT *&url)
 {
-    if (!m_bDocumentReady)
-    {
-        m_bDocumentReady = TRUE;
-        _LoadFirstOpenedMsg();
-    }
+	if (!m_bDocumentReady)
+	{
+		m_bDocumentReady = TRUE;
+		_LoadFirstOpenedMsg();
+	}
 }
 
 HRESULT STDMETHODCALLTYPE SessionLayout::TranslateUrl( /* [in] */ DWORD dwTranslate, /* [in] */ OLECHAR __RPC_FAR *pchURLIn, /* [out] */ OLECHAR __RPC_FAR *__RPC_FAR *ppchURLOut)
@@ -406,14 +408,14 @@ HRESULT STDMETHODCALLTYPE SessionLayout::TranslateUrl( /* [in] */ DWORD dwTransl
 			}
 		}
 	}
-    else if (csUrl.Find(_T("moguim/:documentcompleted")) > -1)
-    {
-        if (!m_bDocumentReady)
-        {
-            m_bDocumentReady = TRUE;
-            _LoadFirstOpenedMsg();
-        }
-    }
+	else if (csUrl.Find(_T("moguim/:documentcompleted")) > -1)
+	{
+		if (!m_bDocumentReady)
+		{
+			m_bDocumentReady = TRUE;
+			_LoadFirstOpenedMsg();
+		}
+	}
 
 	return S_OK;
 }
@@ -423,8 +425,8 @@ void SessionLayout::NewWindow2(VARIANT_BOOL *&Cancel, BSTR bstrUrl)
 	*Cancel = VARIANT_TRUE;
 	if (m_csTobeTranslateUrl.Find(_T("moguim/:history")) > -1
 		|| m_csTobeTranslateUrl.Find(_T("moguim/:chat2")) > -1
-		|| m_csTobeTranslateUrl.Find(_T("moguim/:playvoice"))>-1
-        || m_csTobeTranslateUrl.Find(_T("moguim/:documentcompleted")) > -1)
+		|| m_csTobeTranslateUrl.Find(_T("moguim/:playvoice")) > -1
+		|| m_csTobeTranslateUrl.Find(_T("moguim/:documentcompleted")) > -1)
 		return;
 	module::getMiscModule()->asynOpenWebBrowser(m_csTobeTranslateUrl);
 }
@@ -470,8 +472,8 @@ void SessionLayout::MKOForEmotionModuleCallBack(const std::string& keyId, MKO_TU
 			CString strPath = pEmotionParam->strPath;
 			if (m_pInputRichEdit && !strPath.IsEmpty())
 			{
-				SIZE size = { 0, 0 };			
-				m_pInputRichEdit->InsertImage(strPath.GetBuffer(),size,TRUE);
+				SIZE size = { 0, 0 };
+				m_pInputRichEdit->InsertImage(strPath.GetBuffer(), size, TRUE);
 			}
 		}
 	}
@@ -590,15 +592,15 @@ void SessionLayout::OnSendImageCallback(std::shared_ptr<void> param)
 
 void SessionLayout::OnFinishScreenCapture(__in LPCTSTR lpFilePath)
 {
-    LOG__(APP, _T("ScreenShot Finish-->%s"), lpFilePath);
-    CxImage img;
-    img.Load(lpFilePath, CXIMAGE_SUPPORT_BMP);
-    HBITMAP hBitmap = img.MakeBitmap();
-    BITMAP bitmap;
-    GetObject(hBitmap, sizeof(BITMAP), (LPSTR)&bitmap);
-    SIZE bitmapSize = { bitmap.bmWidth, bitmap.bmHeight };
+	LOG__(APP, _T("ScreenShot Finish-->%s"), lpFilePath);
+	CxImage img;
+	img.Load(lpFilePath, CXIMAGE_SUPPORT_BMP);
+	HBITMAP hBitmap = img.MakeBitmap();
+	BITMAP bitmap;
+	GetObject(hBitmap, sizeof(BITMAP), (LPSTR)&bitmap);
+	SIZE bitmapSize = { bitmap.bmWidth, bitmap.bmHeight };
 
-    CString szImgPath(lpFilePath);
-    m_pInputRichEdit->InsertImage(szImgPath.GetBuffer(), bitmapSize, FALSE);
+	CString szImgPath(lpFilePath);
+	m_pInputRichEdit->InsertImage(szImgPath.GetBuffer(), bitmapSize, FALSE);
 }
 /******************************************************************************/

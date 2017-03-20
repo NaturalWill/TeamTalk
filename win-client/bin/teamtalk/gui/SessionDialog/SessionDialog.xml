@@ -11,7 +11,8 @@
 			</VerticalLayout>
 			<VerticalLayout height="50" padding="5,10,0,0">
 				<Edit name="username" readonly="true" endellipsis="true" textcolor="#FF333333"  font="1" bkcolor="#FFF7F7F7" text="用户名" width="500"/>	
-				<Edit name="userSignature" endellipsis="true" textcolor="#FF333333" multiline="false" readonly="true" bkcolor="#FFF7F7F7" textcolor="#FF999999"/>	
+				<Edit name="userSignature" endellipsis="true" textcolor="#FF333333" multiline="false" readonly="true" bkcolor="#FFF7F7F7" />	
+				<!--<Edit name="userSignature" endellipsis="true" textcolor="#FF333333" multiline="false" readonly="true" bkcolor="#FFF7F7F7" textcolor="#FF999999"/>-->	
 			</VerticalLayout>
 			<Text name="writingStatus" visible="false"  padding="0,40,0,0" textcolor="#FF999999"  text="对方正在输入..." />			
 			<HorizontalLayout width="68" padding="0,5,0,0">
@@ -52,7 +53,8 @@
 			</VerticalLayout>
 			<Control width="1"/>
 			<VerticalLayout name="right_part" width="160"  visible="false" bkcolor="#FFFFFFFF" >
-						<Edit name="editSearch" height="27" multiline="false" bordersize="1" borderround="2,2" bordercolor="FFDADADA" inset="4,4,4,3" tooltip="搜索群成员" multiline="false"/>
+						<Edit name="editSearch" height="27" multiline="false" bordersize="1" borderround="2,2" bordercolor="FFDADADA" inset="4,4,4,3" tooltip="搜索群成员" />
+						<!--<Edit name="editSearch" height="27" multiline="false" bordersize="1" borderround="2,2" bordercolor="FFDADADA" inset="4,4,4,3" tooltip="搜索群成员" multiline="false"/>-->
 						<List name="SearchResult" menu="true" header="hidden"  itemshowhtml="true"  visible="false" vscrollbar="true" childpadding="2"/>
 						<List name="GroupMembers" menu="true" header="hidden" itemshowhtml="true" vscrollbar="true"/>						
 			</VerticalLayout>
