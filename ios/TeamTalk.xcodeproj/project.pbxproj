@@ -11,7 +11,6 @@
 		14871F141EDE5D9400F0E9C4 /* MTTAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BB57B1B43EF3B0023AAE2 /* MTTAvatarImageView.m */; };
 		14871F151EDE5DA300F0E9C4 /* MTTAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BB5761B43DB1B0023AAE2 /* MTTAvatarManager.m */; };
 		14CDC58A1EE50E8700EEF606 /* bubble.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14CDC5891EE50E8700EEF606 /* bubble.bundle */; };
-		14CE17E21EEA33D30007771A /* PublicProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CE17E01EEA33D30007771A /* PublicProfileCell.xib */; };
 		810D52181B50ECFA004DF7B4 /* bgImage_HL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */; };
 		810D52191B50ECFA004DF7B4 /* cellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52151B50ECFA004DF7B4 /* cellLine@2x.png */; };
 		810D521A1B50ECFA004DF7B4 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D52171B50ECFA004DF7B4 /* LCActionSheet.m */; };
@@ -2680,7 +2679,6 @@
 				C07E65951B3283FB00A5102C /* left@2x.png in Resources */,
 				C07E657C1B3283FB00A5102C /* email.png in Resources */,
 				C07E65391B3283FB00A5102C /* delImage@2x.png in Resources */,
-				14CE17E21EEA33D30007771A /* PublicProfileCell.xib in Resources */,
 				C07E653C1B3283FB00A5102C /* contact_selected.png in Resources */,
 				C07E65881B3283FB00A5102C /* myprofile_selected@2x.png in Resources */,
 				C07E653D1B3283FB00A5102C /* contact_selected@2x.png in Resources */,
