@@ -28,6 +28,6 @@
 /**
  *  离线
  */
-- (void)offlineCompletion:(void(^)())completion;
+//- (void)offlineCompletion:(void(^)())completion;
 - (void)reloginSuccess:(void(^)())success failure:(void(^)(NSString* error))failure;
 @end

@@ -64,6 +64,7 @@
         make.center.equalTo(ws.view);
     }];
     
+    
     _avatar = [UIImageView new];
     _name = [UILabel new];
     _cname = [UILabel new];
@@ -81,6 +82,7 @@
         }
         [self.tableView reloadData];
     }];
+    
 }
 
 -(void)initData

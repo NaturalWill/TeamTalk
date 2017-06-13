@@ -14,7 +14,7 @@
 #import "DDTcpClientManager.h"
 #import "SendMessageAPI.h"
 #import "RuntimeStatus.h"
-#import "RecentUsersViewController.h"
+//#import "RecentUsersViewController.h"
 #import "EmotionsModule.h"
 #import "NSDictionary+JSON.h"
 #import "UnAckMessageManager.h"

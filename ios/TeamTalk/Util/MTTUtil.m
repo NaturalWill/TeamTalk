@@ -54,7 +54,7 @@
     
     
     TheRuntime.user =nil;
-    TheRuntime.userID =nil;
+//    TheRuntime.userID =nil;
     [[DDMessageModule shareInstance] removeAllUnreadMessages];
     [[SessionModule instance] clearSession];
     [[DDTcpClientManager instance] disconnect];

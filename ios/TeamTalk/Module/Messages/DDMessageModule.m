@@ -16,7 +16,7 @@
 #import "MsgReadACKAPI.h"
 #import "DDUserModule.h"
 #import "DDReceiveMessageACKAPI.h"
-#import "RecentUsersViewController.h"
+//#import "RecentUsersViewController.h"
 #import "GetMessageQueueAPI.h"
 #import "DDGroupModule.h"
 #import "MsgReadNotify.h"

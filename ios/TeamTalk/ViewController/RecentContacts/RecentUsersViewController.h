@@ -16,4 +16,5 @@
 @property(nonatomic,strong)UIView* placeholderView;
 @property(strong)NSMutableArray *items;
 + (instancetype)shareInstance;
++ (void)destroyInstance;
 @end

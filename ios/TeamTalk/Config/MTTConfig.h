@@ -28,6 +28,7 @@
 #define IM_PDU_HEADER_LEN   16
 #define IM_PDU_VERSION      13
 
-#define SERVER_ADDR                             @"http://61.153.100.221:8080/msg_server"
+//#define SERVER_ADDR                             @"http://access.teamtalk.im:8080/msg_server"
+#define SERVER_ADDR                             @"http://192.168.1.22:8080/msg_server"
 
 #define _(x)                                NSLocalizedString(x,@"")

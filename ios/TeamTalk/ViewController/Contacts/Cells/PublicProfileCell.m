@@ -48,7 +48,9 @@
 
 - (void)setDesc:(NSString *)desc detail:(NSString *)detail{
     [_descLabel setText:desc];
-    [_detailLabel setText:detail];
+    if(_detailLabel) {
+        [_detailLabel setText:detail];
+    }
 }
 
 - (void)awakeFromNib {

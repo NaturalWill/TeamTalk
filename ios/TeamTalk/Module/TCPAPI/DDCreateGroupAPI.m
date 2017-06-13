@@ -83,7 +83,7 @@
         {
             NSString *groupId = [MTTGroupEntity pbGroupIdToLocalID:rsp.groupId];
             NSString *groupName = rsp.groupName;
-            uint32_t userCnt =[[rsp userIdList] count];
+            uint32_t userCnt = (unsigned)[[rsp userIdList] count];
             group = [[MTTGroupEntity alloc] init];
             group.objID = groupId;
             group.name = groupName;

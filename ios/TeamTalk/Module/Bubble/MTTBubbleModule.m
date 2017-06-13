@@ -8,7 +8,7 @@
 
 #import "MTTBubbleModule.h"
 #import "MTTUtil.h"
-
+//static MTTBubbleModule* g_bubbleModule;
 @implementation MTTBubbleModule
 {
     MTTBubbleConfig* _left_config;
@@ -16,6 +16,12 @@
 }
 + (instancetype)shareInstance
 {
+    
+//    if (!g_bubbleModule) {
+//        
+//        g_bubbleModule = [[MTTBubbleModule alloc] init];
+//        
+//    }
     static MTTBubbleModule* g_bubbleModule;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

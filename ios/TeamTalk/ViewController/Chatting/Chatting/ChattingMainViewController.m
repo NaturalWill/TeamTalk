@@ -27,7 +27,6 @@
 #import "EmotionsModule.h"
 #import "RuntimeStatus.h"
 #import "DDEmotionCell.h"
-#import "RecentUsersViewController.h"
 #import "PublicProfileViewControll.h"
 #import "UnAckMessageManager.h"
 #import "GetMessageQueueAPI.h"
@@ -167,7 +166,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
         NSString* messageContent = [mutalMessageContent jsonString];
         message.msgContent = messageContent;
-        [self sendMessage:imageURL messageEntity:message];
+        [self sendMessageWithMessageEntity:message];
         [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
         }];
         
@@ -229,7 +228,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     } failure:^(NSString *errorDescripe) {
         DDLog(@"消息插入DB失败");
     }];
-    [self sendMessage:text messageEntity:message];
+    [self sendMessageWithMessageEntity:message];
 }
 
 
@@ -240,7 +239,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
 }
 
--(void)sendMessage:(NSString *)msg messageEntity:(MTTMessageEntity *)message
+-(void)sendMessageWithMessageEntity:(MTTMessageEntity *)message
 {
     BOOL isGroup = [self.module.MTTSessionEntity isGroup];
     [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(MTTMessageEntity* theMessage,NSError *error) {
@@ -607,7 +606,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     } failure:^(NSString *errorDescripe) {
         DDLog(@"消息插入DB失败");
     }];
-    [self sendMessage:string messageEntity:message];
+    [self sendMessageWithMessageEntity:message];
     
 }
 -(void)deleteEmojiFace

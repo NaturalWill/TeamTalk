@@ -87,7 +87,7 @@
     group.groupCreatorId=[dic safeObjectForKey:@"creatID"];
     group.objID = [dic safeObjectForKey:@"groupId"];
     group.avatar = [dic safeObjectForKey:@"avatar"];
-    group.GroupType = [[dic safeObjectForKey:@"groupType"] integerValue];
+    group.groupType = [[dic safeObjectForKey:@"groupType"] integerValue];
     group.name = [dic safeObjectForKey:@"name"];
     group.avatar = [dic safeObjectForKey:@"avatar"];
     group.isShield = [[dic safeObjectForKey:@"isshield"] boolValue];

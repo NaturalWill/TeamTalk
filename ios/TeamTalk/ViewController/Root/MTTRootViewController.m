@@ -137,8 +137,8 @@
 -(void)logoutNotification:(NSNotification*)notification{
 
     [MTTUtil loginOut];
-    
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [RecentUsersViewController destroyInstance];
 }
 
 -(void)kickOffUserNotification:(NSNotification*)notification
@@ -185,7 +185,10 @@
                     }
                 }];
                 if(!allStop){
-                    [[RecentUsersViewController shareInstance].tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                    if([[RecentUsersViewController shareInstance].items count] > 0) {
+                        [[RecentUsersViewController shareInstance].tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                    }
+                    
                 }
             }
             self.clickCount=0;

@@ -10,7 +10,7 @@
 #import "PublicProfileViewControll.h"
 #import "RuntimeStatus.h"
 #import "UIImageView+WebCache.h"
-#import "DDUserDetailInfoAPI.h"
+//#import "DDUserDetailInfoAPI.h"
 #import "MTTPhotosCache.h"
 #import "LogoutAPI.h"
 #import "MTTLoginViewController.h"

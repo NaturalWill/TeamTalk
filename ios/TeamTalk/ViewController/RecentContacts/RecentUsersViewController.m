@@ -8,26 +8,21 @@
 
 #import "RecentUsersViewController.h"
 #import "RecentUserCell.h"
-#import "DDUserModule.h"
 #import "DDMessageModule.h"
 #import "ChattingMainViewController.h"
-#import "MTTSessionEntity.h"
 #import "MTTDatabaseUtil.h"
-#import "LoginModule.h"
-#import "DDClientState.h"
-#import "RuntimeStatus.h"
-#import "DDUserModule.h"
-#import "DDGroupModule.h"
 #import "DDFixedGroupAPI.h"
 #import "SearchContentViewController.h"
 #import "MBProgressHUD.h"
-#import "SessionModule.h"
 #import "MTTLoginViewController.h"
 #import "MTTPCStatusCell.h"
 #import "MTTPCLoginViewController.h"
 #import "MTTUsersStatAPI.h"
 #import "UIImageView+WebCache.h"
 #import <Masonry.h>
+
+static RecentUsersViewController* g_recentUsersViewController;
+static dispatch_once_t onceToken;
 
 @interface RecentUsersViewController ()
 @property(nonatomic,strong)MBProgressHUD *hud;
@@ -46,8 +41,6 @@
 
 + (instancetype)shareInstance
 {
-    static RecentUsersViewController* g_recentUsersViewController;
-    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         g_recentUsersViewController = [RecentUsersViewController new];
     });
@@ -347,6 +340,11 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
++ (void)destroyInstance {
+    onceToken = 0;
+    g_recentUsersViewController = nil;
 }
 
 #pragma mark - UITableView DataSource

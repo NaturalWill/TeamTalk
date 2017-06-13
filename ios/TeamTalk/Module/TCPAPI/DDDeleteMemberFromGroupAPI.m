@@ -86,7 +86,7 @@
         groupEntity =  [[DDGroupModule instance] getGroupByGId:groupId];
         NSMutableArray *array = [NSMutableArray new];
         for (uint32_t i = 0; i < [[rsp curUserIdList] count]; i++) {
-            NSString* userId = [MTTUtil changeOriginalToLocalID:[rsp curUserIdList][i] SessionType:SessionTypeSessionTypeSingle];
+            NSString* userId = [MTTUtil changeOriginalToLocalID:(unsigned)[rsp curUserIdList][i] SessionType:SessionTypeSessionTypeSingle];
             [array addObject:userId];
         }
         groupEntity.groupUserIds=array;

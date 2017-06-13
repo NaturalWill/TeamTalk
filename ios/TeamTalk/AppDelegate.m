@@ -12,8 +12,8 @@
 #import "DDClientStateMaintenanceManager.h"
 #import "SessionModule.h"
 #import "NSDictionary+Safe.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+//#import <Fabric/Fabric.h>
+//#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -24,7 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [Fabric with:@[CrashlyticsKit]];
+//    [Fabric with:@[CrashlyticsKit]];
     
     [DDClientStateMaintenanceManager shareInstance];
     [RuntimeStatus instance];

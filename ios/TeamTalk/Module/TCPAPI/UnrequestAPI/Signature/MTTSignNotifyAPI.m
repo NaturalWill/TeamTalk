@@ -35,7 +35,7 @@
     {
         IMSignInfoChangedNotify *res = [IMSignInfoChangedNotify parseFromData:data];
         NSMutableDictionary *dic = [NSMutableDictionary new];
-        [dic setObject:[NSString stringWithFormat:@"%d",res.changedUserId] forKey:@"uid"];
+        [dic setObject:[NSString stringWithFormat:@"%d",(unsigned int)res.changedUserId] forKey:@"uid"];
         [dic setObject:res.signInfo forKey:@"sign"];
         return dic;
     };

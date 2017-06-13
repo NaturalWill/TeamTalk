@@ -98,6 +98,9 @@ typedef void(^CheckFailure)(NSError* error);
                                 success(response);
                             }
                         }
+                } else {
+                    NSError * error = [[NSError alloc] initWithDomain:@"用户名或密码错误" code:6 userInfo:nil];
+                    failure(error);
                 }
                    
                 

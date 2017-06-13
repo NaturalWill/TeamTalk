@@ -215,7 +215,7 @@
     {
         [self.unreadMessageCountLabel setHidden:NO];
         CGPoint center = self.unreadMessageCountLabel.center;
-        NSString* title = [NSString stringWithFormat:@"%li",messageCount];
+        NSString* title = [NSString stringWithFormat:@"%li",(unsigned long)messageCount];
         [self.unreadMessageCountLabel setText:title];
         [self.unreadMessageCountLabel setWidth:16];
         [self.unreadMessageCountLabel setCenter:center];
@@ -225,7 +225,7 @@
     {
         [self.unreadMessageCountLabel setHidden:NO];
         CGPoint center = self.unreadMessageCountLabel.center;
-        NSString* title = [NSString stringWithFormat:@"%li",messageCount];
+        NSString* title = [NSString stringWithFormat:@"%li",(unsigned long)messageCount];
         [self.unreadMessageCountLabel setText:title];
         [self.unreadMessageCountLabel setWidth:25];
         [self.unreadMessageCountLabel setCenter:center];

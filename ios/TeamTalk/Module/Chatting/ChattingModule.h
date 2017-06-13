@@ -30,18 +30,18 @@ typedef void(^DDChatLoadMoreHistoryCompletion)(NSUInteger addcount, NSError* err
 - (void)loadMoreHistoryCompletion:(DDChatLoadMoreHistoryCompletion)completion;
 - (void)loadAllHistoryCompletion:(MTTMessageEntity*)message Completion:(DDChatLoadMoreHistoryCompletion)completion;
 
-- (void)loadHostoryUntilCommodity:(MTTMessageEntity*)message completion:(DDChatLoadMoreHistoryCompletion)completion;
+//- (void)loadHostoryUntilCommodity:(MTTMessageEntity*)message completion:(DDChatLoadMoreHistoryCompletion)completion;
 
 - (float)messageHeight:(MTTMessageEntity*)message;
 
 - (void)addPrompt:(NSString*)prompt;
 - (void)addShowMessage:(MTTMessageEntity*)message;
 - (void)addShowMessages:(NSArray*)messages;
--(void)scanDBAndFixIDList:(void(^)(bool isok))block;
+//-(void)scanDBAndFixIDList:(void(^)(bool isok))block;
 - (void)updateSessionUpdateTime:(NSUInteger)time;
-- (void)clearChatData;
--(void)m_clearScanRecord;
-- (void)showMessagesAddCommodity:(MTTMessageEntity*)message;
+//- (void)clearChatData;
+//-(void)m_clearScanRecord;
+//- (void)showMessagesAddCommodity:(MTTMessageEntity*)message;
 -(void)getCurrentUser:(void(^)(MTTUserEntity *))block;
 -(void)loadHisToryMessageFromServer:(NSUInteger)FromMsgID loadCount:(NSUInteger)count Completion:(DDChatLoadMoreHistoryCompletion)completion;
 -(void)loadHostoryMessageFromServer:(NSUInteger)FromMsgID Completion:(DDChatLoadMoreHistoryCompletion)completion;

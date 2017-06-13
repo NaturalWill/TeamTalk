@@ -189,7 +189,7 @@
         self.name  = pbUser.userRealName;
         self.nick  = pbUser.userNickName;
         self.avatar= pbUser.avatarUrl;
-        self.department = @(pbUser.departmentId);
+        self.department = [NSString stringWithFormat:@"%d", pbUser.departmentId];
         self.departId = @"";
         self.telphone = pbUser.userTel;
         self.sex =   pbUser.userGender;

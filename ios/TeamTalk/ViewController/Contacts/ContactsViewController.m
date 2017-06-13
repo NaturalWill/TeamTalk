@@ -36,7 +36,7 @@
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) UISearchBar *searchBar;
 @property(nonatomic,strong) ContactAvatarTools *tools;
-@property(nonatomic,strong) UISearchDisplayController *searchController;
+//@property(nonatomic,strong) UISearchDisplayController *searchController;
 @property(nonatomic,strong) SearchContentViewController *searchContent;
 @property(nonatomic,strong) MBProgressHUD *hud;
 @property(nonatomic,strong)UITableView* searchTableView;
@@ -592,7 +592,6 @@
         PublicProfileViewControll *public = [PublicProfileViewControll new];
         public.user=user;
         [self pushViewController:public animated:YES];
-        
     }
     
 }
