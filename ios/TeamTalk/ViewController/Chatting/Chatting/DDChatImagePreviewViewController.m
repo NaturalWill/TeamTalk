@@ -13,7 +13,7 @@
 #import "MTTUserEntity.h"
 #import <SVWebViewController.h>
 #import <MBProgressHUD.h>
-#import <ZXingObjC.h>
+//#import <ZXingObjC.h>
 
 @interface DDChatImagePreviewViewController ()
 @property(nonatomic,strong)MWPhotoBrowser *browser ;
@@ -155,21 +155,14 @@
 -(void)decodeQRImage
 {
     MWPhoto *curImage = [self.photos objectAtIndex:self.browser.currentIndex];
-    ZXImage *img = [[ZXImage alloc]initWithURL:curImage.photoURL];
     
-    ZXLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithZXImage:img];
-    ZXBinaryBitmap *bitmap = [ZXBinaryBitmap binaryBitmapWithBinarizer:[ZXHybridBinarizer binarizerWithSource:source]];
-    
-    NSError *error = nil;
-    
-    ZXDecodeHints *hints = [ZXDecodeHints hints];
-    
-    ZXMultiFormatReader *reader = [ZXMultiFormatReader reader];
-    ZXResult *result = [reader decode:bitmap
-                                hints:hints
-                                error:&error];
-    self.QRCodeResult = result.text;
+    // 参考: http://blog.csdn.net/chengkaizone/article/details/50601958
+    CIDetector*detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
+    NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:curImage.image.CGImage]];
+    CIQRCodeFeature *feature = [features objectAtIndex:0];
+    self.QRCodeResult = feature.messageString;
 }
+
 -(void)saveImage
 {
     MWPhoto *curImage = [self.photos objectAtIndex:self.browser.currentIndex];

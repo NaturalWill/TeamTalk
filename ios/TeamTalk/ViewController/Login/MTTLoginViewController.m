@@ -8,8 +8,7 @@
 
 #import "MTTLoginViewController.h"
 #import "MTTRootViewController.h"
-#import "LoginModule.h"
-#import "SendPushTokenAPI.h"
+#import "CRIMManager.h"
 #import "MBProgressHUD.h"
 #import "SCLAlertView.h"
 
@@ -147,27 +146,13 @@
     SCLAlertView *alert = [SCLAlertView new];
 //    userName = @"铸剑";
 //    password = @"123456";
-    [[LoginModule instance] loginWithUsername:userName password:password success:^(MTTUserEntity *user) {
-        
+    [CRIMManager loginWithUserName:userName password:password success:^(bool suceess) {
         [HUD removeFromSuperview];
         
         [self.userLoginBtn setEnabled:YES];
-        if (user) {
-            TheRuntime.user=user ;
-            [TheRuntime updateData];
-            
-            if (TheRuntime.pushToken) {
-                SendPushTokenAPI *pushToken = [[SendPushTokenAPI alloc] init];
-                [pushToken requestWithObject:TheRuntime.pushToken Completion:^(id response, NSError *error) {
-                    
-                }];
-            }
-            MTTRootViewController *rootVC =[[MTTRootViewController alloc] init];
-//            UINavigationController *navRootVC =[[UINavigationController alloc] initWithRootViewController:rootVC];
-            [self pushViewController:rootVC animated:YES];
-        }
+        MTTRootViewController *rootVC =[[MTTRootViewController alloc] init];
+        [self pushViewController:rootVC animated:YES];
     } failure:^(NSString *error) {
-        
         [HUD removeFromSuperview];
         
         if([error isEqualToString:@"版本过低"])
@@ -184,8 +169,8 @@
             
             [alert showError:self title:@"错误" subTitle:error closeButtonTitle:@"确定" duration:0];
         }
-    }];
-    
+
+    }];    
 }
 
 #pragma mark - UITextFieldDelegate

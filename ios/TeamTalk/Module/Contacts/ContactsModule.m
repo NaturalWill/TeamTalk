@@ -12,7 +12,6 @@
 #import "MTTDepartment.h"
 #import "DDFixedGroupAPI.h"
 #import "MTTDatabaseUtil.h"
-#import "DDGroupModule.h"
 #import "RuntimeStatus.h"
 #import "DDUserModule.h"
 #import "MTTGroupEntity.h"

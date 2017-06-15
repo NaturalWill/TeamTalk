@@ -146,7 +146,8 @@
     }
     
     // 条码类型 AVMetadataObjectTypeQRCode
-    _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
+//    _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
+    _output.metadataObjectTypes = [NSArray arrayWithObject:AVMetadataObjectTypeQRCode];
     _preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
     _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     _preview.frame =CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT);

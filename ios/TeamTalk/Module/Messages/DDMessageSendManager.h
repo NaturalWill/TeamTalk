@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MTTMessageEntity.h"
+#import "MTTPhotosCache.h"
 @class MTTSessionEntity;
 typedef void(^DDSendMessageCompletion)(MTTMessageEntity* message,NSError* error);
 
@@ -43,4 +44,9 @@ typedef NS_ENUM(NSUInteger, MessageType)
 
 
 - (void)sendVoiceMessage:(NSData*)voice filePath:(NSString*)filePath forSessionID:(NSString*)sessionID isGroup:(BOOL)isGroup Message:(MTTMessageEntity *)msg Session:(MTTSessionEntity*)session completion:(DDSendMessageCompletion)completion;
+
+- (void)sendImageMessage:(id)object Image:(UIImage *)image chatModule:(ChattingModule*)module makeMessageUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure;
+
+- (void)reSendImageMessage:(id)object getImageFailureBlock:(void(^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure;
+
 @end

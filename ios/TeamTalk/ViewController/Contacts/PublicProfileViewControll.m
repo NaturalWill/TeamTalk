@@ -7,19 +7,11 @@
 //
 
 #import "PublicProfileViewControll.h"
-#import "MTTUserEntity.h"
-#import "MTTSessionEntity.h"
-#import "UIImageView+WebCache.h"
-#import "ContactsModule.h"
 #import "UIImageView+WebCache.h"
 #import "ChattingMainViewController.h"
-#import "RuntimeStatus.h"
 #import "DDUserDetailInfoAPI.h"
-#import "MTTDatabaseUtil.h"
-#import "DDUserModule.h"
 #import "PublicProfileCell.h"
 #import "MTTEditSignViewController.h"
-#import "DDUserDetailInfoAPI.h"
 #import "UIView+PointBadge.h"
 #import <Masonry/Masonry.h>
 #import "SJAvatarBrowser.h"

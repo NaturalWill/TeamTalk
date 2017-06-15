@@ -7,7 +7,6 @@
 //
 
 #import "DDAddMemberToGroupAPI.h"
-#import "DDGroupModule.h"
 #import "MTTGroupEntity.h"
 #import "RuntimeStatus.h"
 #import "IMGroup.pb.h"

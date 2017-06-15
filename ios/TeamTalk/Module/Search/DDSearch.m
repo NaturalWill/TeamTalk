@@ -8,7 +8,6 @@
 
 #import "DDSearch.h"
 #import "MTTDatabaseUtil.h"
-#import "DDGroupModule.h"
 #import "MTTUserEntity.h"
 #import "MTTGroupEntity.h"
 #import "SpellLibrary.h"

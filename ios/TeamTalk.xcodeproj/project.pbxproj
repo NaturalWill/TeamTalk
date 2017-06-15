@@ -10,7 +10,9 @@
 		143764B51EE940DF00B19C1F /* TeamTalkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C054EC4E1B3270D900078809 /* TeamTalkTests.m */; };
 		14871F141EDE5D9400F0E9C4 /* MTTAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BB57B1B43EF3B0023AAE2 /* MTTAvatarImageView.m */; };
 		14871F151EDE5DA300F0E9C4 /* MTTAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BB5761B43DB1B0023AAE2 /* MTTAvatarManager.m */; };
+		14A000651EF0D26100161180 /* CRIMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A000641EF0D26100161180 /* CRIMManager.m */; };
 		14CDC58A1EE50E8700EEF606 /* bubble.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14CDC5891EE50E8700EEF606 /* bubble.bundle */; };
+		7CD3194967CA7B9F885B6C2A /* libPods-TeamTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3003ED4FD98955A54798E58 /* libPods-TeamTalk.a */; };
 		810D52181B50ECFA004DF7B4 /* bgImage_HL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */; };
 		810D52191B50ECFA004DF7B4 /* cellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52151B50ECFA004DF7B4 /* cellLine@2x.png */; };
 		810D521A1B50ECFA004DF7B4 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D52171B50ECFA004DF7B4 /* LCActionSheet.m */; };
@@ -83,7 +85,6 @@
 		81F8502A1B58B4F60004F6DE /* MTTPCStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F850291B58B4F60004F6DE /* MTTPCStatusCell.m */; };
 		81F8502C1B58BD300004F6DE /* mac_logined@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F8502B1B58BD300004F6DE /* mac_logined@2x.png */; };
 		81F8502F1B58E3110004F6DE /* MTTPCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8502E1B58E3110004F6DE /* MTTPCLoginViewController.m */; };
-		9C26CB08F352CBFAB30AC24D /* libPods-TeamTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2261E106C3B01EB0C09C95A1 /* libPods-TeamTalk.a */; };
 		C00078421B3A466700E7E5B8 /* UIView+PointBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C00078411B3A466700E7E5B8 /* UIView+PointBadge.m */; };
 		C00078451B3A552200E7E5B8 /* UITabBar+SubView.m in Sources */ = {isa = PBXBuildFile; fileRef = C00078441B3A552200E7E5B8 /* UITabBar+SubView.m */; };
 		C000784E1B3A77E000E7E5B8 /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = C000784C1B3A77E000E7E5B8 /* NSObject+Block.m */; };
@@ -409,16 +410,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		146CB6831EE63D9700AEAC0E /* NewLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewLoginViewController.h; path = NewViewController/NewLoginViewController.h; sourceTree = "<group>"; };
-		146CB6841EE63D9700AEAC0E /* NewLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewLoginViewController.m; path = NewViewController/NewLoginViewController.m; sourceTree = "<group>"; };
-		146CB6851EE63D9700AEAC0E /* NewLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewLoginViewController.xib; path = NewViewController/NewLoginViewController.xib; sourceTree = "<group>"; };
+		14A000631EF0D26100161180 /* CRIMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRIMManager.h; sourceTree = "<group>"; };
+		14A000641EF0D26100161180 /* CRIMManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRIMManager.m; sourceTree = "<group>"; };
 		14CDC5891EE50E8700EEF606 /* bubble.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = bubble.bundle; sourceTree = "<group>"; };
-		14CE17D41EEA242C0007771A /* NewPublicProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewPublicProfileViewController.h; path = NewViewController/NewPublicProfileViewController.h; sourceTree = "<group>"; };
-		14CE17D51EEA242C0007771A /* NewPublicProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewPublicProfileViewController.m; path = NewViewController/NewPublicProfileViewController.m; sourceTree = "<group>"; };
-		14CE17D61EEA242C0007771A /* NewPublicProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewPublicProfileViewController.xib; path = NewViewController/NewPublicProfileViewController.xib; sourceTree = "<group>"; };
 		14CE17E01EEA33D30007771A /* PublicProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicProfileCell.xib; sourceTree = "<group>"; };
 		14CE17E31EEAA65B0007771A /* TeamTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeamTalk.entitlements; sourceTree = "<group>"; };
-		2261E106C3B01EB0C09C95A1 /* libPods-TeamTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeamTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FC420602801BBD0A169270 /* Pods-TeamTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk.release.xcconfig"; sourceTree = "<group>"; };
 		810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgImage_HL@2x.png"; sourceTree = "<group>"; };
 		810D52151B50ECFA004DF7B4 /* cellLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellLine@2x.png"; sourceTree = "<group>"; };
@@ -1077,6 +1073,7 @@
 		C0AE39FC1B32C68200B67232 /* EditGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGroupViewController.m; sourceTree = "<group>"; };
 		C0AE39FD1B32C68200B67232 /* EditGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditGroupViewController.xib; sourceTree = "<group>"; };
 		C0AE3A1A1B32C95A00B67232 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C3003ED4FD98955A54798E58 /* libPods-TeamTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeamTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19782C38E51227125C14A77 /* Pods-TeamTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1086,7 +1083,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C054EC851B3274E200078809 /* libsecurity.a in Frameworks */,
-				9C26CB08F352CBFAB30AC24D /* libPods-TeamTalk.a in Frameworks */,
+				7CD3194967CA7B9F885B6C2A /* libPods-TeamTalk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1100,26 +1097,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14CDC58B1EE5453800EEF606 /* NewViewController */ = {
-			isa = PBXGroup;
-			children = (
-				146CB6831EE63D9700AEAC0E /* NewLoginViewController.h */,
-				146CB6841EE63D9700AEAC0E /* NewLoginViewController.m */,
-				146CB6851EE63D9700AEAC0E /* NewLoginViewController.xib */,
-				14CE17D41EEA242C0007771A /* NewPublicProfileViewController.h */,
-				14CE17D51EEA242C0007771A /* NewPublicProfileViewController.m */,
-				14CE17D61EEA242C0007771A /* NewPublicProfileViewController.xib */,
-			);
-			name = NewViewController;
-			sourceTree = "<group>";
-		};
 		527B2E51021DC51A46265D31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				817CB3AE1B3BC6E80004AFEA /* Fabric.framework */,
 				817CB3AF1B3BC6E80004AFEA /* Crashlytics.framework */,
 				C0AE3A1A1B32C95A00B67232 /* libz.dylib */,
-				2261E106C3B01EB0C09C95A1 /* libPods-TeamTalk.a */,
+				C3003ED4FD98955A54798E58 /* libPods-TeamTalk.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1223,7 +1207,6 @@
 			isa = PBXGroup;
 			children = (
 				14CE17E31EEAA65B0007771A /* TeamTalk.entitlements */,
-				14CDC58B1EE5453800EEF606 /* NewViewController */,
 				C054EC361B3270D900078809 /* AppDelegate.h */,
 				C054EC371B3270D900078809 /* AppDelegate.m */,
 				C054EC3F1B3270D900078809 /* Images.xcassets */,
@@ -1350,6 +1333,8 @@
 				C054EC661B32737300078809 /* MTTUtil.m */,
 				C054EC861B32752100078809 /* MTTDatabaseUtil.h */,
 				C054EC871B32752100078809 /* MTTDatabaseUtil.m */,
+				14A000631EF0D26100161180 /* CRIMManager.h */,
+				14A000641EF0D26100161180 /* CRIMManager.m */,
 				C0AE39CB1B32BEF100B67232 /* URLProtocal */,
 				C07E65D41B328D6F00A5102C /* Notification */,
 				C07E65CD1B328D5700A5102C /* SundriesCenter */,
@@ -2870,6 +2855,7 @@
 				C07E66761B3292E200A5102C /* DDDataOutputStream.m in Sources */,
 				C054ED131B3276DE00078809 /* framing.c in Sources */,
 				C054ED271B3276DE00078809 /* kiss_fftr.c in Sources */,
+				14A000651EF0D26100161180 /* CRIMManager.m in Sources */,
 				C07E665C1B328F1A00A5102C /* MsgReadNotify.m in Sources */,
 				C0AE39FF1B32C68200B67232 /* DDChatImageCell.m in Sources */,
 				8124296F1B33D22300E13E23 /* IMBuddy.pb.m in Sources */,

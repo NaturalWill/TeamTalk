@@ -10,7 +10,6 @@
 #import "AlbumViewController.h"
 #import "DDSendPhotoMessageAPI.h"
 #import "ChattingMainViewController.h"
-#import "DDMessageSendManager.h"
 #import "MTTPhotosCache.h"
 #import "MTTShakeAPI.h"
 #import <Masonry.h>
@@ -179,8 +178,6 @@
         [request requestWithObject:array Completion:^(id response, NSError *error) {
         }];
         [[ChattingMainViewController shareInstance] sendPrompt:@"你向对方发送了一个抖动~"];
-        NSString* nick = [RuntimeStatus instance].user.nick;
-        NSDictionary *dict = @{@"nick":nick};
     }else{
         [[ChattingMainViewController shareInstance] sendPrompt:@"留条活路吧...别太频繁了"];
     }

@@ -9,8 +9,6 @@
 #import "ChattingMainViewController.h"
 #import "ChatUtilityViewController.h"
 #import "MTTPhotosCache.h"
-#import "DDGroupModule.h"
-#import "DDMessageSendManager.h"
 #import "MsgReadACKAPI.h"
 #import "MTTDatabaseUtil.h"
 #import "DDChatTextCell.h"
@@ -44,6 +42,7 @@
 #import "MTTUtil.h"
 #import "UIImageView+WebCache.h"
 #import "MTTUsersStatAPI.h"
+#import "CRIMManager.h"
 
 typedef NS_ENUM(NSUInteger, DDBottomShowComponent)
 {
@@ -91,9 +90,9 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 @property(strong)NSString *chatObjectID;
 @property(strong) UIButton *titleBtn ;
 
-- (UITableViewCell*)p_textCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(MTTMessageEntity*)message;
-- (UITableViewCell*)p_voiceCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(MTTMessageEntity*)message;
-- (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt;
+//- (UITableViewCell*)p_textCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(MTTMessageEntity*)message;
+//- (UITableViewCell*)p_voiceCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(MTTMessageEntity*)message;
+//- (UITableViewCell*)p_promptCell_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath message:(DDPromptEntity*)prompt;
 
 - (void)n_receiveMessage:(NSNotification*)notification;
 - (void)p_clickThRecordButton:(UIButton*)button;
@@ -142,46 +141,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 -(void)sendImageMessage:(MTTPhotoEnity *)photo Image:(UIImage *)image
 {
-    NSDictionary* messageContentDic = @{DD_IMAGE_LOCAL_KEY:photo.localPath};
-    NSString* messageContent = [messageContentDic jsonString];
-    
-    MTTMessageEntity *message = [MTTMessageEntity makeMessage:messageContent Module:self.module MsgType:DDMessageTypeImage];
-    [self.tableView reloadData];
-    [self scrollToBottomAnimated:YES];
-    NSData *photoData = UIImagePNGRepresentation(image);
-    [[MTTPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
-    //[self.chatInputView.textView setText:@""];
-    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-        DDLog(@"消息插入DB成功");
-        
-    } failure:^(NSString *errorDescripe) {
-        DDLog(@"消息插入DB失败");
-    }];
-    photo=nil;
-    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:messageContentDic[DD_IMAGE_LOCAL_KEY] success:^(NSString *imageURL) {
+    [CRIMManager sendImageMessage:photo Image:image chatModule:self.module makeMessageUIBlock:^{
+        [self.tableView reloadData];
         [self scrollToBottomAnimated:YES];
-        message.state=DDMessageSending;
-        NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
-        NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
-        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
-        NSString* messageContent = [mutalMessageContent jsonString];
-        message.msgContent = messageContent;
+    } successBlock:^(MTTMessageEntity *message){
+        [self scrollToBottomAnimated:YES];
         [self sendMessageWithMessageEntity:message];
-        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-        }];
-        
-    } failure:^(id error) {
-        message.state = DDMessageSendFailure;
-        //刷新DB
-        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-            if (result)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_tableView reloadData];
-                });
-            }
-        }];
-        
+    } failureBlock:^{
+        [self.tableView reloadData];
     }];
 }
 
@@ -242,7 +209,7 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 -(void)sendMessageWithMessageEntity:(MTTMessageEntity *)message
 {
     BOOL isGroup = [self.module.MTTSessionEntity isGroup];
-    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(MTTMessageEntity* theMessage,NSError *error) {
+    [CRIMManager sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(MTTMessageEntity* theMessage,NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             message.state= theMessage.state;
             [self.tableView reloadData];

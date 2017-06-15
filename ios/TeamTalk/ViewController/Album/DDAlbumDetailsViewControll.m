@@ -16,7 +16,6 @@
 #import "MWCommon.h"
 #import "MBProgressHUD.h"
 #import "MTTPhotosCache.h"
-#import "DDMessageSendManager.h"
 #import "MWPhotoBrowser.h"
 @interface DDAlbumDetailsViewControll ()<MWPhotoBrowserDelegate>
 @property(nonatomic,strong)NSMutableArray *photos;

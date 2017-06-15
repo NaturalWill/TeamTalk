@@ -24,7 +24,7 @@
  *  @param name     用户名
  *  @param password 密码
  */
-- (void)loginWithUsername:(NSString*)name password:(NSString*)password success:(void(^)(MTTUserEntity* user))success failure:(void(^)(NSString* error))failure;
+- (void)loginWithUsername:(NSString*)name password:(NSString*)password success:(void(^)(bool sucess))success failure:(void(^)(NSString* error))failure;
 /**
  *  离线
  */

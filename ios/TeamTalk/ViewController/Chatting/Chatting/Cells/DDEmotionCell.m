@@ -8,7 +8,7 @@
 
 #import "DDEmotionCell.h"
 #import "EmotionsModule.h"
-#import "DDMessageSendManager.h"
+#import "CRIMManager.h"
 #import "UIView+Addition.h"
 #import "SessionModule.h"
 #import "UIImage+GIF.h"
@@ -102,7 +102,7 @@
 {
     message.state = DDMessageSending;
     [self showSending];
-    [[DDMessageSendManager instance] sendMessage:message isGroup:[message isGroupMessage]  Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
+    [CRIMManager sendMessage:message isGroup:[message isGroupMessage]  Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
         
         [self showSendSuccess];
         

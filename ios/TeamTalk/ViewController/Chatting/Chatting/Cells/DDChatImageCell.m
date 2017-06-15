@@ -12,7 +12,7 @@
 #import "NSDictionary+JSON.h"
 #import "MTTPhotosCache.h"
 #import "MTTDatabaseUtil.h"
-#import "DDMessageSendManager.h"
+#import "CRIMManager.h"
 #import "ChattingMainViewController.h"
 #import "DDSendPhotoMessageAPI.h"
 #import "SessionModule.h"
@@ -218,68 +218,12 @@
 {
     //子类去继承
     [self showSending];
-    NSDictionary* dic = [NSDictionary initWithJsonString:message.msgContent];
-    NSString* locaPath = dic[DD_IMAGE_LOCAL_KEY];
-    __block UIImage* image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:locaPath];
-    if (!image)
-    {
-        NSData* data = [[MTTPhotosCache sharedPhotoCache] photoFromDiskCacheForKey:locaPath];
-        image = [[UIImage alloc] initWithData:data];
-        if (!image) {
-            [self showSendFailure];
-            return ;
-        }
-    }
-    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:locaPath success:^(NSString *imageURL) {
-        NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
-        NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
-        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
-        NSString* messageContent = [mutalMessageContent jsonString];
-        message.msgContent = messageContent;
-        image = nil;
-        [[DDMessageSendManager instance] sendMessage:message isGroup:[message isGroupMessage] Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
-            if (error)
-            {
-                DDLog(@"发送消息失败");
-                message.state = DDMessageSendFailure;
-                //刷新DB
-                [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                    if (result)
-                    {
-                        [self showSendFailure];
-                    }
-                }];
-            }
-            else
-            {
-                //刷新DB
-                message.state = DDmessageSendSuccess;
-                //刷新DB
-                [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                    if (result)
-                    {
-                        [self showSendSuccess];
-                    }
-                }];
-            }
-        } Error:^(NSError *error) {
-            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                if (result)
-                {
-                    [self showSendFailure];
-                }
-            }];
-        }];
-        
-    } failure:^(id error) {
-        message.state = DDMessageSendFailure;
-        //刷新DB
-        [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-            if (result)
-            {
-                [self showSendFailure];
-            }
-        }];
+    [CRIMManager reSendImageMessage:message getImageFailureBlock:^{
+        [self showSendFailure];
+    } successBlock:^(MTTMessageEntity *message) {
+        [self showSendSuccess];
+    } failureBlock:^{
+        [self showSendFailure];
     }];
     
 }

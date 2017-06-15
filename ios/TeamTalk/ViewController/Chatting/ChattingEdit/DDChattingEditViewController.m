@@ -7,7 +7,6 @@
 //
 
 #import "DDChattingEditViewController.h"
-//#import "ChattingEditModule.h"
 #import "DDUserModule.h"
 #import "DDCreateGroupAPI.h"
 #import "RuntimeStatus.h"
@@ -25,7 +24,6 @@
 #import <Masonry/Masonry.h>
 
 @interface DDChattingEditViewController ()
-//@property(nonatomic,strong)ChattingEditModule *model;
 @property(nonatomic,strong)NSMutableArray *temp;
 @property(nonatomic,strong) MTTUserEntity *edit;
 @property(nonatomic,strong) MTTUserEntity *delete;

@@ -66,7 +66,7 @@
 
 
 #pragma mark Public API
-- (void)loginWithUsername:(NSString*)name password:(NSString*)password success:(void(^)(MTTUserEntity* loginedUser))success failure:(void(^)(NSString* error))failure
+- (void)loginWithUsername:(NSString*)name password:(NSString*)password success:(void(^)(bool sucess))success failure:(void(^)(NSString* error))failure
 {
 
     [_httpServer getMsgIp:^(NSDictionary *dic) {
@@ -88,35 +88,39 @@
                     clientState.userState=DDUserOnline;
                     _relogining=YES;
                     MTTUserEntity* user = object[@"user"];
-                    TheRuntime.user=user;
-                    
-                    [[MTTDatabaseUtil instance] openCurrentUserDB];
-                    
-                    //加载所有人信息，创建检索拼音
-                    [self p_loadAllUsersCompletion:^{
+                    if(user) {
+                        TheRuntime.user=user ;
+                        [[MTTDatabaseUtil instance] openCurrentUserDB];
                         
-                        if ([[SpellLibrary instance] isEmpty]) {
+                        //加载所有人信息，创建检索拼音
+                        [self p_loadAllUsersCompletion:^{
                             
-                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [[[DDUserModule shareInstance] getAllMaintanceUser] enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
-                                    [[SpellLibrary instance] addSpellForObject:obj];
-                                    [[SpellLibrary instance] addDeparmentSpellForObject:obj];
-                                    
-                                }];
-                                NSArray *array =  [[DDGroupModule instance] getAllGroups];
-                                [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                                    [[SpellLibrary instance] addSpellForObject:obj];
-                                }];
-                            });
-                        }
-                    }];
-
-                    //
-                    [[SessionModule instance] loadLocalSession:^(bool isok) {}];
-                    
-                    success(user);
-                    
-                     [MTTNotification postNotification:DDNotificationUserLoginSuccess userInfo:nil object:user];
+                            if ([[SpellLibrary instance] isEmpty]) {
+                                
+                                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                    [[[DDUserModule shareInstance] getAllMaintanceUser] enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
+                                        [[SpellLibrary instance] addSpellForObject:obj];
+                                        [[SpellLibrary instance] addDeparmentSpellForObject:obj];
+                                        
+                                    }];
+                                    NSArray *array =  [[DDGroupModule instance] getAllGroups];
+                                    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                                        [[SpellLibrary instance] addSpellForObject:obj];
+                                    }];
+                                });
+                            }
+                        }];
+                        
+                        //
+                        [[SessionModule instance] loadLocalSession:^(bool isok) {}];
+                        
+                        [MTTNotification postNotification:DDNotificationUserLoginSuccess userInfo:nil object:user];
+                        
+                        success(YES);
+                        
+                    } else {
+                        failure(@"不存在用户");
+                    }
                     
                 } failure:^(NSError *object) {
                     
@@ -141,7 +145,7 @@
     DDLog(@"relogin fun");
     if ([DDClientState shareInstance].userState == DDUserOffLine && _lastLoginPassword && _lastLoginUserName) {
         
-        [self loginWithUsername:_lastLoginUserName password:_lastLoginPassword success:^(MTTUserEntity *user) {
+        [self loginWithUsername:_lastLoginUserName password:_lastLoginPassword success:^(bool sucess) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloginSuccess" object:nil];
             success(YES);
         } failure:^(NSString *error) {

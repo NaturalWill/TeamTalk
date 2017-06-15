@@ -15,11 +15,9 @@
 #import "MTTSessionEntity.h"
 #import "ContactsViewController.h"
 #import "MBProgressHUD.h"
-#import "ContactsModule.h"
 #import "MTTDatabaseUtil.h"
 #import "SpellLibrary.h"
 #import "DDGroupModule.h"
-#import "DDUserModule.h"
 #import "SessionModule.h"
 #import "ChattingMainViewController.h"
 #import <Masonry/Masonry.h>

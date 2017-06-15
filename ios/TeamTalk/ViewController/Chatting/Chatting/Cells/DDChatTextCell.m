@@ -9,7 +9,7 @@
 #import "DDChatTextCell.h"
 #import "UIView+Addition.h"
 #import "MTTDatabaseUtil.h"
-#import "DDMessageSendManager.h"
+#import "CRIMManager.h"
 #import "SessionModule.h"
 #import <Masonry/Masonry.h>
 #import "MTTBubbleModule.h"
@@ -279,7 +279,7 @@ static int const fontsize = 16;
 {
     message.state = DDMessageSending;
     [self showSending];
-    [[DDMessageSendManager instance] sendMessage:message isGroup:[message isGroupMessage]  Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
+    [CRIMManager sendMessage:message isGroup:[message isGroupMessage]  Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
         [self showSendSuccess];
     } Error:^(NSError *error) {
         [self showSendFailure];
