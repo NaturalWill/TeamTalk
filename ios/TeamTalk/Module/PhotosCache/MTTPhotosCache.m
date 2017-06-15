@@ -52,6 +52,7 @@
         }
     }];
     
+
 }
 -(NSData *)photoFromDiskCacheForKey:(NSString *)key
 {
@@ -144,7 +145,7 @@
                 if (![_fileManager fileExistsAtPath:PhotosMessageDir]) {
                     [_fileManager createDirectoryAtPath:PhotosMessageDir withIntermediateDirectories:YES attributes:nil error:NULL];
                 }
-                
+                NSLog(@"%@", PhotosMessageDir);
                 [_fileManager createFileAtPath:[self defaultCachePathForKey:key] contents:photo attributes:nil];
             }
         });
