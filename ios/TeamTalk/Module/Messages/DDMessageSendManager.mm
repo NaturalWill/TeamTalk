@@ -20,9 +20,7 @@
 #import "MTTDatabaseUtil.h"
 #import "security.h"
 #import "DDSendPhotoMessageAPI.h"
-#import <SDImageCache.h>
-#import <SDWebImage/SDWebImageManager.h>
-#import "SessionModule.h"
+
 static uint32_t seqNo = 0;
 
 @interface DDMessageSendManager(PrivateAPI)
@@ -146,8 +144,6 @@ static uint32_t seqNo = 0;
         [sendVoiceMessageAPI requestWithObject:object Completion:^(id response, NSError *error) {
             if (!error)
             {
-                
-                
                 NSLog(@"发送消息成功");
                 [[MTTDatabaseUtil instance] deleteMesages:msg completion:^(BOOL success){
                     
@@ -179,118 +175,6 @@ static uint32_t seqNo = 0;
         }];
         
     });
-}
-
-- (void)sendImageMessage:(id)object Image:(UIImage *)image chatModule:(ChattingModule*)module makeMessageUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure
-{
-    NSString *localPath;
-    MTTMessageEntity *message;
-    bool shouldReSend = NO;
-    if([object isKindOfClass:[MTTPhotoEnity class]]) {
-        MTTPhotoEnity *photo = (MTTPhotoEnity *)object;
-        NSDictionary* messageContentDic = @{DD_IMAGE_LOCAL_KEY:photo.localPath};
-        NSString* messageContent = [messageContentDic jsonString];
-        
-        message = [MTTMessageEntity makeMessage:messageContent Module:module MsgType:DDMessageTypeImage];
-        update();
-        NSData *photoData = UIImagePNGRepresentation(image);
-        [[MTTPhotosCache sharedPhotoCache] storePhoto:photoData forKey:photo.localPath toDisk:YES];
-        [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-            DDLog(@"消息插入DB成功");
-            
-        } failure:^(NSString *errorDescripe) {
-            DDLog(@"消息插入DB失败");
-        }];
-        photo=nil;
-        localPath = messageContentDic[DD_IMAGE_LOCAL_KEY];
-    } else if([object isKindOfClass:[MTTMessageEntity class]]) {
-        message = (MTTMessageEntity *)object;
-        NSDictionary* dic = [NSDictionary initWithJsonString:message.msgContent];
-        localPath = dic[DD_IMAGE_LOCAL_KEY];
-        __block UIImage* image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:localPath];
-        if (!image)
-        {
-            NSData* data = [[MTTPhotosCache sharedPhotoCache] photoFromDiskCacheForKey:localPath];
-            image = [[UIImage alloc] initWithData:data];
-            if (!image) {
-                update();
-                return ;
-            }
-        }
-        shouldReSend = YES;
-    }
-    
-    [[DDSendPhotoMessageAPI sharedPhotoCache] uploadImage:localPath success:^(NSString *imageURL) {
-        message.state=DDMessageSending;
-        NSDictionary* tempMessageContent = [NSDictionary initWithJsonString:message.msgContent];
-        NSMutableDictionary* mutalMessageContent = [[NSMutableDictionary alloc] initWithDictionary:tempMessageContent];
-        [mutalMessageContent setValue:imageURL forKey:DD_IMAGE_URL_KEY];
-        NSString* messageContent = [mutalMessageContent jsonString];
-        message.msgContent = messageContent;
-        success(message);
-        if(!shouldReSend) {
-            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-            }];
-        }
-        
-    } failure:^(id error) {
-        message.state = DDMessageSendFailure;
-        if([object isKindOfClass:[MTTPhotoEnity class]]) {
-            //刷新DB
-            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                if (result)
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        failure();
-                    });
-                }
-            }];
-        }
-    }];
-}
-
-- (void)reSendImageMessage:(id)object getImageFailureBlock:(void(^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure {
-    [self sendImageMessage:object Image:nil chatModule:nil makeMessageUIBlock:^{
-        imageFailure();
-    } successBlock:^(MTTMessageEntity *message) {
-        [[DDMessageSendManager instance] sendMessage:message isGroup:[message isGroupMessage] Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
-            if (error)
-            {
-                DDLog(@"发送消息失败");
-                message.state = DDMessageSendFailure;
-                //刷新DB
-                [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                    if (result)
-                    {
-                        failure();
-                    }
-                }];
-            }
-            else
-            {
-                //刷新DB
-                message.state = DDmessageSendSuccess;
-                //刷新DB
-                [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                    if (result)
-                    {
-                        success();
-                    }
-                }];
-            }
-        } Error:^(NSError *error) {
-            DDLog(@"error: %@", error);
-            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                if (result)
-                {
-                    failure();
-                }
-            }];
-        }];
-
-    } failureBlock:^{
-        failure();
-    }];
 }
 
 #pragma mark Private API

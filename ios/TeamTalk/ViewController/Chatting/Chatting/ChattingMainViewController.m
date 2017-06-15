@@ -271,34 +271,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
         
     });
     
-    [[DDMessageSendManager instance] sendVoiceMessage:muData filePath:filePath forSessionID:self.module.MTTSessionEntity.sessionID isGroup:isGroup Message:message Session:self.module.MTTSessionEntity completion:^(MTTMessageEntity *theMessage, NSError *error) {
-        if (!error)
-        {
-            DDLog(@"发送语音消息成功");
-            [[PlayerManager sharedManager] playAudioWithFileName:@"msg.caf" playerType:DDSpeaker delegate:self];
-            message.state = DDmessageSendSuccess;
-            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_tableView reloadData];
-                });
-                
-                
-            }];
-        }
-        else
-        {
-            DDLog(@"发送语音消息失败");
-            message.state = DDMessageSendFailure;
-            [[MTTDatabaseUtil instance] updateMessageForMessage:message completion:^(BOOL result) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_tableView reloadData];
-                });
-                
-            }];
-            
-        }
+    [CRIMManager sendVoiceMessage:muData filePath:filePath forSessionID:self.module.MTTSessionEntity.sessionID isGroup:isGroup Message:message Session:self.module.MTTSessionEntity playingDelegate:self DBSuceesBlock:^{
+        [_tableView reloadData];
+    } DBFailureBlock:^{
+        [_tableView reloadData];
     }];
 }
 

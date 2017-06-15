@@ -45,8 +45,4 @@ typedef NS_ENUM(NSUInteger, MessageType)
 
 - (void)sendVoiceMessage:(NSData*)voice filePath:(NSString*)filePath forSessionID:(NSString*)sessionID isGroup:(BOOL)isGroup Message:(MTTMessageEntity *)msg Session:(MTTSessionEntity*)session completion:(DDSendMessageCompletion)completion;
 
-- (void)sendImageMessage:(id)object Image:(UIImage *)image chatModule:(ChattingModule*)module makeMessageUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure;
-
-- (void)reSendImageMessage:(id)object getImageFailureBlock:(void(^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure;
-
 @end

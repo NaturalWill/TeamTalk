@@ -12,7 +12,7 @@
 #import "PlayerManager.h"
 #import "RecorderManager.h"
 #import "MTTDatabaseUtil.h"
-#import "DDMessageSendManager.h"
+#import "CRIMManager.h"
 #import "SessionModule.h"
 #import <Masonry/Masonry.h>
 static float const maxCellLength = 180;
@@ -310,7 +310,7 @@ static float const minCellLength = 50;
     }
     [muData appendBytes:ch length:4];
     [muData appendData:data];
-    [[DDMessageSendManager instance] sendVoiceMessage:muData filePath:filePath forSessionID:message.sessionId isGroup:[message isGroupMessage] Message:message Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity *theMessage, NSError *error) {
+    [CRIMManager sendVoiceMessage:muData filePath:filePath forSessionID:message.sessionId isGroup:[message isGroupMessage] Message:message Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity *theMessage, NSError *error) {
         if (!error)
         {
               [self showSendSuccess];
