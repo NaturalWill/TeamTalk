@@ -141,14 +141,17 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 
 -(void)sendImageMessage:(MTTPhotoEnity *)photo Image:(UIImage *)image
 {
-    [CRIMManager sendImageMessage:photo Image:image chatModule:self.module makeMessageUIBlock:^{
+    [CRIMManager sendImageMessage:photo Image:image chatModule:self.module session:self.module.MTTSessionEntity makeMessageUpdateUIBlock:^{
         [self.tableView reloadData];
         [self scrollToBottomAnimated:YES];
-    } successBlock:^(MTTMessageEntity *message){
+    } successBlock:^(MTTMessageEntity *message) {
         [self scrollToBottomAnimated:YES];
-        [self sendMessageWithMessageEntity:message];
     } failureBlock:^{
         [self.tableView reloadData];
+    } DBUpdatecompletion:^(MTTMessageEntity *message, NSError *error) {
+        [self updateUIAfterSendMessageSuccess];
+    } Error:^(NSError *error) {
+        [self updateUIAfterSendMessagefailed];
     }];
 }
 
@@ -186,16 +189,15 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     {
         return;
     }
-    DDMessageContentType msgContentType = DDMessageTypeText;
-    MTTMessageEntity *message = [MTTMessageEntity makeMessage:text Module:self.module MsgType:msgContentType];
-    [self.tableView reloadData];
-    [self.chatInputView.textView setText:nil];
-    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-        DDLog(@"消息插入DB成功");
-    } failure:^(NSString *errorDescripe) {
-        DDLog(@"消息插入DB失败");
+    
+    [CRIMManager sendTextMessage:text chatModule:self.module Session:self.module.MTTSessionEntity makeMessageUpdateUIBlock:^{
+        [self.tableView reloadData];
+        [self.chatInputView.textView setText:nil];
+    } completion:^(MTTMessageEntity *message, NSError *error) {
+        [self updateUIAfterSendMessageSuccess];
+    } Error:^(NSError *error) {
+        [self updateUIAfterSendMessagefailed];
     }];
-    [self sendMessageWithMessageEntity:message];
 }
 
 
@@ -206,19 +208,16 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
 }
 
--(void)sendMessageWithMessageEntity:(MTTMessageEntity *)message
-{
-    BOOL isGroup = [self.module.MTTSessionEntity isGroup];
-    [CRIMManager sendMessage:message isGroup:isGroup Session:self.module.MTTSessionEntity  completion:^(MTTMessageEntity* theMessage,NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            message.state= theMessage.state;
-            [self.tableView reloadData];
-            [self scrollToBottomAnimated:YES];
-        });
-    } Error:^(NSError *error) {
-        [self.tableView reloadData];
-    }];
+- (void)updateUIAfterSendMessageSuccess {
+    [self.tableView reloadData];
+    [self scrollToBottomAnimated:YES];
+
 }
+
+- (void)updateUIAfterSendMessagefailed {
+    [self.tableView reloadData];
+}
+
 //--------------------------------------------------------------------------------------------
 #pragma mark -
 #pragma mark RecordingDelegate
@@ -359,12 +358,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self.navigationItem.titleView setUserInteractionEnabled:YES];
     self.view.backgroundColor=TTBG;
     
-    if([TheRuntime.user.nick isEqualToString:@"蝎紫"]){
+    /*
+    if([TheRuntime.user.nick isEqualToString:@"zzp"]){
         UIImageView *chatBgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [chatBgView setImage:[UIImage imageNamed:@"chatBg"]];
         [self.view insertSubview:chatBgView atIndex:0];
         self.tableView.backgroundView =chatBgView;
     }
+     */
     
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.isGotoAt = NO;
@@ -540,17 +541,14 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
 #pragma mark - EmojiFace Funcation
 -(void)insertEmojiFace:(NSString *)string
 {
-    DDMessageContentType msgContentType = DDMEssageEmotion;
-    MTTMessageEntity *message = [MTTMessageEntity makeMessage:string Module:self.module MsgType:msgContentType];
-    [self.tableView reloadData];
-    //[self.chatInputView.textView setText:nil];
-    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
-        DDLog(@"消息插入DB成功");
-    } failure:^(NSString *errorDescripe) {
-        DDLog(@"消息插入DB失败");
+    [CRIMManager sendTextMessage:string chatModule:self.module Session:self.module.MTTSessionEntity makeMessageUpdateUIBlock:^{
+        [self.tableView reloadData];
+        [self.chatInputView.textView setText:nil];
+    } completion:^(MTTMessageEntity *message, NSError *error) {
+        [self updateUIAfterSendMessageSuccess];
+    } Error:^(NSError *error) {
+        [self updateUIAfterSendMessagefailed];
     }];
-    [self sendMessageWithMessageEntity:message];
-    
 }
 -(void)deleteEmojiFace
 {

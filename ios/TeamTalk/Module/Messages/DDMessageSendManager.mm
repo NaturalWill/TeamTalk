@@ -56,7 +56,7 @@ static uint32_t seqNo = 0;
     return self;
 }
 
-- (void)sendMessage:(MTTMessageEntity *)message isGroup:(BOOL)isGroup Session:(MTTSessionEntity*)session completion:(DDSendMessageCompletion)completion Error:(void (^)(NSError *))block
+- (void)sendMessage:(MTTMessageEntity *)message Session:(MTTSessionEntity*)session completion:(DDSendMessageCompletion)completion Error:(void (^)(NSError *))block
 {
     
     dispatch_async(self.sendMessageSendQueue, ^{

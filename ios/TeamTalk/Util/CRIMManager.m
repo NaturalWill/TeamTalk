@@ -45,8 +45,25 @@
 }
 
 #pragma mark - send message methods
-+ (void)sendMessage:(MTTMessageEntity *)message isGroup:(BOOL)isGroup Session:(MTTSessionEntity*)session completion:(DDSendMessageCompletion)completion Error:(void(^)(NSError *error))block {
-    [[DDMessageSendManager instance] sendMessage:message isGroup:isGroup Session:session completion:^(MTTMessageEntity *message, NSError *error) {
++ (void)sendTextMessage:(MTTMessageEntity *)message Session:(MTTSessionEntity *)session completion:(DDSendMessageCompletion)completion Error:(void (^)(NSError *))block {
+    [[DDMessageSendManager instance] sendMessage:message Session:session completion:^(MTTMessageEntity *message, NSError *error) {
+        completion(message, error);
+    } Error:^(NSError *error) {
+        block(error);
+    }];
+}
+
+
++ (void)sendTextMessage:(NSString *)messageText chatModule:(ChattingModule *)module Session:(MTTSessionEntity*)session makeMessageUpdateUIBlock:(void(^)())update completion:(DDSendMessageCompletion)completion Error:(void(^)(NSError *error))block {
+    DDMessageContentType msgContentType = DDMessageTypeText;
+    MTTMessageEntity *message = [MTTMessageEntity makeMessage:messageText Module:module MsgType:msgContentType];
+    update();
+    [[MTTDatabaseUtil instance] insertMessages:@[message] success:^{
+        DDLog(@"消息插入DB成功");
+    } failure:^(NSString *errorDescripe) {
+        DDLog(@"消息插入DB失败");
+    }];
+    [[DDMessageSendManager instance] sendMessage:message Session:session completion:^(MTTMessageEntity *message, NSError *error) {
         completion(message, error);
     } Error:^(NSError *error) {
         block(error);
@@ -106,7 +123,7 @@
     }];
 }
 
-+ (void)sendImageMessage:(id)object Image:(UIImage *)image chatModule:(ChattingModule*)module makeMessageUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure
++ (void)sendImageMessage:(id)object Image:(UIImage *)image chatModule:(ChattingModule*)module makeMessageUpdateUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure
 {
     NSString *localPath;
     MTTMessageEntity *message;
@@ -175,11 +192,26 @@
 }
 
 
-+ (void)reSendImageMessage:(id)object getImageFailureBlock:(void(^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure {
-    [CRIMManager sendImageMessage:object Image:nil chatModule:nil makeMessageUIBlock:^{
++ (void)sendImageMessage:(MTTPhotoEnity *) photo Image:(UIImage *)image chatModule:(ChattingModule *)module session:(MTTSessionEntity *)session makeMessageUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure DBUpdatecompletion:(DDSendMessageCompletion)completion Error:(void(^)(NSError *error))block {
+    [CRIMManager sendImageMessage:photo Image:image chatModule:module makeMessageUpdateUIBlock:^{
+        update();
+    } successBlock:^(MTTMessageEntity *message) {
+        success(message);
+        [[DDMessageSendManager instance] sendMessage: message Session:session completion:^(MTTMessageEntity *message, NSError *error) {
+            completion(message, error);
+        } Error:^(NSError *error) {
+            block(error);
+        }];
+    } failureBlock:^{
+        failure();
+    }];
+}
+
++ (void)resendImageMessage:(id)object getImageFailureBlock:(void(^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure {
+    [CRIMManager sendImageMessage:object Image:nil chatModule:nil makeMessageUpdateUIBlock:^{
         imageFailure();
     } successBlock:^(MTTMessageEntity *message) {
-        [[DDMessageSendManager instance] sendMessage:message isGroup:[message isGroupMessage] Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
+        [[DDMessageSendManager instance] sendMessage:message Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
             if (error)
             {
                 DDLog(@"发送消息失败");

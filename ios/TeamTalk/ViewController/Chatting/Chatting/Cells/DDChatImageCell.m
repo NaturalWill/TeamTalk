@@ -218,7 +218,7 @@
 {
     //子类去继承
     [self showSending];
-    [CRIMManager reSendImageMessage:message getImageFailureBlock:^{
+    [CRIMManager resendImageMessage:message getImageFailureBlock:^{
         [self showSendFailure];
     } successBlock:^(MTTMessageEntity *message) {
         [self showSendSuccess];

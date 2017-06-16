@@ -102,7 +102,7 @@
 {
     message.state = DDMessageSending;
     [self showSending];
-    [CRIMManager sendMessage:message isGroup:[message isGroupMessage]  Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
+    [CRIMManager sendTextMessage:message Session:[[SessionModule instance] getSessionById:message.sessionId] completion:^(MTTMessageEntity* theMessage,NSError *error) {
         
         [self showSendSuccess];
         

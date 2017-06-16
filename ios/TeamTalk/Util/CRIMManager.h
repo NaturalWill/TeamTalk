@@ -20,9 +20,15 @@
 
 
 #pragma mark - send message methods
-+ (void)sendMessage:(MTTMessageEntity *)message
-            isGroup:(BOOL)isGroup
++ (void)sendTextMessage:(MTTMessageEntity *)message
+                Session:(MTTSessionEntity*)session
+             completion:(DDSendMessageCompletion)completion
+                  Error:(void(^)(NSError *error))block;
+
++ (void)sendTextMessage:(NSString *)messageText
+             chatModule:(ChattingModule *)module
             Session:(MTTSessionEntity*)session
+    makeMessageUpdateUIBlock:(void(^)())update
          completion:(DDSendMessageCompletion)completion
               Error:(void(^)(NSError *error))block;
 
@@ -47,9 +53,9 @@
 
 
 
-+ (void)sendImageMessage:(id)object Image:(UIImage *)image chatModule:(ChattingModule*)module makeMessageUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure;
++ (void)sendImageMessage:(MTTPhotoEnity *) photo Image:(UIImage *)image chatModule:(ChattingModule *)module session:(MTTSessionEntity *)session makeMessageUpdateUIBlock:(void(^)())update successBlock:(void(^)(MTTMessageEntity *message))success failureBlock:(void(^)())failure DBUpdatecompletion:(DDSendMessageCompletion)completion Error:(void(^)(NSError *error))block;
 
-+ (void)reSendImageMessage:(id)object getImageFailureBlock:(void (^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure;
++ (void)resendImageMessage:(id)object getImageFailureBlock:(void (^)())imageFailure successBlock:(void(^)())success failureBlock:(void(^)())failure;
 
 
 @end
