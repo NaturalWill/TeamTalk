@@ -8,8 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "TestConfig.h"
-//#import "DDMessageSendManager.h"
-
+#import "DDMessageSendManager.h"
 
 @interface SendMessageTest : XCTestCase
 
