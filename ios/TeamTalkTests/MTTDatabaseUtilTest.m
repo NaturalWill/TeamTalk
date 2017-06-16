@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "TestConfig.h"
-#import "MTTDatabaseUtil.h"
+//#import "MTTDatabaseUtil.h"
 
 @interface MTTDatabaseUtilTest : XCTestCase
 
