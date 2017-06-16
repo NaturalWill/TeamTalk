@@ -38,7 +38,7 @@
 //            NSLog(@"----------------------------------------");
 //            NSLog(@"%@", result);
 //            NSLog(@"----------------------------------------");
-//            
+//
 //        }];
         
         [self.search searchDepartment:@"1" completion:^(NSArray *result, NSError *error) {

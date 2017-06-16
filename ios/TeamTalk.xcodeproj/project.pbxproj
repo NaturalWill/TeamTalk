@@ -12,11 +12,14 @@
 		14871F151EDE5DA300F0E9C4 /* MTTAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BB5761B43DB1B0023AAE2 /* MTTAvatarManager.m */; };
 		14A000651EF0D26100161180 /* CRIMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A000641EF0D26100161180 /* CRIMManager.m */; };
 		14CDC58A1EE50E8700EEF606 /* bubble.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14CDC5891EE50E8700EEF606 /* bubble.bundle */; };
-		7CD3194967CA7B9F885B6C2A /* libPods-TeamTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3003ED4FD98955A54798E58 /* libPods-TeamTalk.a */; };
 		436298091EF2294E00C8686D /* TestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 436298081EF2294E00C8686D /* TestTool.m */; };
+		4362980B1EF25ABB00C8686D /* LoginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4362980A1EF25ABB00C8686D /* LoginTest.m */; };
 		438753451EF1033F004C7FAD /* MTTUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 438753441EF1033F004C7FAD /* MTTUtilTest.m */; };
 		438753491EF10C26004C7FAD /* PhotoCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 438753481EF10C26004C7FAD /* PhotoCacheTest.m */; };
 		4392CB1C1EF1321500CF9258 /* SearchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4392CB1B1EF1321500CF9258 /* SearchTest.m */; };
+		43D89F831EF3C8E800A5B382 /* MTTDatabaseUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D89F821EF3C8E800A5B382 /* MTTDatabaseUtilTest.m */; };
+		43F4F60E1EF3A811005F347D /* SendMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F4F60D1EF3A811005F347D /* SendMessageTest.m */; };
+		7CD3194967CA7B9F885B6C2A /* libPods-TeamTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3003ED4FD98955A54798E58 /* libPods-TeamTalk.a */; };
 		810D52181B50ECFA004DF7B4 /* bgImage_HL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */; };
 		810D52191B50ECFA004DF7B4 /* cellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52151B50ECFA004DF7B4 /* cellLine@2x.png */; };
 		810D521A1B50ECFA004DF7B4 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D52171B50ECFA004DF7B4 /* LCActionSheet.m */; };
@@ -420,12 +423,15 @@
 		14CE17E01EEA33D30007771A /* PublicProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicProfileCell.xib; sourceTree = "<group>"; };
 		14CE17E31EEAA65B0007771A /* TeamTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeamTalk.entitlements; sourceTree = "<group>"; };
 		40FC420602801BBD0A169270 /* Pods-TeamTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk.release.xcconfig"; sourceTree = "<group>"; };
-		436298051EF226C200C8686D /* testConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
 		436298071EF2294E00C8686D /* TestTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTool.h; sourceTree = "<group>"; };
 		436298081EF2294E00C8686D /* TestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTool.m; sourceTree = "<group>"; };
+		4362980A1EF25ABB00C8686D /* LoginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTest.m; sourceTree = "<group>"; };
 		438753441EF1033F004C7FAD /* MTTUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTUtilTest.m; sourceTree = "<group>"; };
 		438753481EF10C26004C7FAD /* PhotoCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCacheTest.m; sourceTree = "<group>"; };
 		4392CB1B1EF1321500CF9258 /* SearchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTest.m; sourceTree = "<group>"; };
+		43D89F821EF3C8E800A5B382 /* MTTDatabaseUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTDatabaseUtilTest.m; sourceTree = "<group>"; };
+		43D89F841EF3CB0C00A5B382 /* testConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
+		43F4F60D1EF3A811005F347D /* SendMessageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageTest.m; sourceTree = "<group>"; };
 		810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgImage_HL@2x.png"; sourceTree = "<group>"; };
 		810D52151B50ECFA004DF7B4 /* cellLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellLine@2x.png"; sourceTree = "<group>"; };
 		810D52161B50ECFA004DF7B4 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
@@ -1110,7 +1116,7 @@
 		436298061EF2291B00C8686D /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				436298051EF226C200C8686D /* testConfig.h */,
+				43D89F841EF3CB0C00A5B382 /* testConfig.h */,
 				436298071EF2294E00C8686D /* TestTool.h */,
 				436298081EF2294E00C8686D /* TestTool.m */,
 			);
@@ -1121,6 +1127,7 @@
 			isa = PBXGroup;
 			children = (
 				438753441EF1033F004C7FAD /* MTTUtilTest.m */,
+				43D89F821EF3C8E800A5B382 /* MTTDatabaseUtilTest.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -1130,6 +1137,8 @@
 			children = (
 				438753481EF10C26004C7FAD /* PhotoCacheTest.m */,
 				4392CB1B1EF1321500CF9258 /* SearchTest.m */,
+				4362980A1EF25ABB00C8686D /* LoginTest.m */,
+				43F4F60D1EF3A811005F347D /* SendMessageTest.m */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -3108,10 +3117,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D89F831EF3C8E800A5B382 /* MTTDatabaseUtilTest.m in Sources */,
 				438753491EF10C26004C7FAD /* PhotoCacheTest.m in Sources */,
 				4392CB1C1EF1321500CF9258 /* SearchTest.m in Sources */,
 				436298091EF2294E00C8686D /* TestTool.m in Sources */,
+				4362980B1EF25ABB00C8686D /* LoginTest.m in Sources */,
 				143764B51EE940DF00B19C1F /* TeamTalkTests.m in Sources */,
+				43F4F60E1EF3A811005F347D /* SendMessageTest.m in Sources */,
 				438753451EF1033F004C7FAD /* MTTUtilTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3307,6 +3319,7 @@
 				);
 				INFOPLIST_FILE = TeamTalkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_bundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeamTalk.app/TeamTalk";
@@ -3326,6 +3339,7 @@
 				);
 				INFOPLIST_FILE = TeamTalkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_bundle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeamTalk.app/TeamTalk";
