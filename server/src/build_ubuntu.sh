@@ -7,12 +7,14 @@ build() {
 	export LIBRARY_PATH=$PWD/slog:$LIBRARY_PATH
 
 
-    apt-get -y install cmake
-    apt-get -y install libuu-dev 
-    apt-get -y install libcurl4-openssl-dev
-#    apt-get -y install openssl-devel
-    apt-get -y  install libcurl-dev 
-    apt-get -y  install liblog4cxx10-dev libprotobuf-lite8 libhiredis-dev protobuf-compiler cmake g++  libprotobuf-dev
+    #apt-get -y install cmake
+    #apt-get -y install libuu-dev
+    #apt-get -y install libcurl4-openssl-dev
+    #apt-get -y install openssl-devel
+    #apt-get -y  install libcurl-dev
+    #apt-get -y  install liblog4cxx10-dev libprotobuf-lite8 libhiredis-dev protobuf-compiler cmake g++  libprotobuf-dev
+
+    apt -y install cmake libuu-dev liblog4cxx10-dev libhiredis-dev protobuf-compiler cmake g++  libprotobuf-dev libcurl4-openssl-dev # libprotobuf-lite9v5
 
 	echo "#ifndef __VERSION_H__" > base/version.h
 	echo "#define __VERSION_H__" >> base/version.h
