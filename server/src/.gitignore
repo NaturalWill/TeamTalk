@@ -122,11 +122,10 @@ route_server/route_server
 log4cxx/apache-log4cxx-0.10.0/
 protobuf/protobuf-2.6.1/
 
-.anjuta/
-.anjuta_sym_db.db
-.idea/
-*.anjuta
-tools/daeml
 
+tools/daeml
+*/log/
+*_server/server.pid
+*.cbp
 
 

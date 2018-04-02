@@ -262,12 +262,14 @@ const int SessionType_ARRAYSIZE = SessionType_MAX + 1;
 enum MsgType {
   MSG_TYPE_SINGLE_TEXT = 1,
   MSG_TYPE_SINGLE_AUDIO = 2,
+  MSG_TYPE_SINGLE_EXT = 3,
   MSG_TYPE_GROUP_TEXT = 17,
-  MSG_TYPE_GROUP_AUDIO = 18
+  MSG_TYPE_GROUP_AUDIO = 18,
+  MSG_TYPE_GROUP_EXT = 19
 };
 bool MsgType_IsValid(int value);
 const MsgType MsgType_MIN = MSG_TYPE_SINGLE_TEXT;
-const MsgType MsgType_MAX = MSG_TYPE_GROUP_AUDIO;
+const MsgType MsgType_MAX = MSG_TYPE_GROUP_EXT;
 const int MsgType_ARRAYSIZE = MsgType_MAX + 1;
 
 enum ClientType {

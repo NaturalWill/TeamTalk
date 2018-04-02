@@ -1,0 +1,9 @@
+!/server/run/*.sh
+/server/run/*
+/server/src/protobuf/protobuf-2.6.1/vsprojects/protobuf.sln
+
+
+.anjuta/
+.anjuta_sym_db.db
+.idea/
+*.anjuta

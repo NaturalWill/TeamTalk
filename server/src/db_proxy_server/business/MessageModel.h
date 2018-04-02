@@ -28,6 +28,8 @@ public:
 
     bool sendMessage(uint32_t nRelateId, uint32_t nFromId, uint32_t nToId, IM::BaseDefine::MsgType nMsgType, uint32_t nCreateTime,
                      uint32_t nMsgId, string& strMsgContent);
+	bool sendExtMessage(uint32_t nRelateId, uint32_t nFromId, uint32_t nToId, IM::BaseDefine::MsgType nMsgType, uint32_t nCreateTime,
+						uint32_t nMsgId, string& strMsgContent, uint32_t nMsgLen);
     bool sendAudioMessage(uint32_t nRelateId, uint32_t nFromId, uint32_t nToId, IM::BaseDefine::MsgType nMsgType, uint32_t nCreateTime,
                           uint32_t nMsgId, const char* pMsgContent, uint32_t nMsgLen);
     void getMessage(uint32_t nUserId, uint32_t nPeerId, uint32_t nMsgId, uint32_t nMsgCnt,

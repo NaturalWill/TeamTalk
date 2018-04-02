@@ -163,6 +163,25 @@ bool CMessageModel::sendMessage(uint32_t nRelateId, uint32_t nFromId, uint32_t n
     }
 	return bRet;
 }
+/*
+ * IMMessage 分表
+ * AddFriendShip()
+ * if nFromId or nToId is ShopEmployee
+ * GetShopId
+ * Insert into IMMessage_ShopId%8
+ */
+bool CMessageModel::sendExtMessage(uint32_t nRelateId, uint32_t nFromId, uint32_t nToId, IM::BaseDefine::MsgType nMsgType, uint32_t nCreateTime, uint32_t nMsgId, string& strMsgContent, uint32_t nMsgLen)
+{
+    if (nMsgLen >= 4096) {
+        return false;
+    }
+
+    bool bRet = true;
+    bRet = sendMessage(nRelateId, nFromId, nToId, nMsgType, nCreateTime, nMsgId, strMsgContent);
+
+
+    return bRet;
+}
 
 bool CMessageModel::sendAudioMessage(uint32_t nRelateId, uint32_t nFromId, uint32_t nToId, IM::BaseDefine::MsgType nMsgType, uint32_t nCreateTime, uint32_t nMsgId, const char* pMsgContent, uint32_t nMsgLen)
 {

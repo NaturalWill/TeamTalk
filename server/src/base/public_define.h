@@ -96,7 +96,7 @@ enum {
 #define CHECK_MSG_TYPE_SINGLE(type) \
 ({\
 bool bRet = false;\
-if ((IM::BaseDefine::MSG_TYPE_SINGLE_TEXT == type) || (IM::BaseDefine::MSG_TYPE_SINGLE_AUDIO == type))\
+if ((IM::BaseDefine::MSG_TYPE_SINGLE_TEXT == type) || (IM::BaseDefine::MSG_TYPE_SINGLE_EXT == type) || (IM::BaseDefine::MSG_TYPE_SINGLE_AUDIO == type))\
 {\
 bRet = true;\
 }\
@@ -107,7 +107,7 @@ bRet;\
 #define CHECK_MSG_TYPE_GROUP(type) \
 ({\
 bool bRet = false;\
-if ((IM::BaseDefine::MSG_TYPE_GROUP_TEXT == type) || (IM::BaseDefine::MSG_TYPE_GROUP_AUDIO == type))\
+if ((IM::BaseDefine::MSG_TYPE_GROUP_TEXT == type) || (IM::BaseDefine::MSG_TYPE_GROUP_EXT == type) || (IM::BaseDefine::MSG_TYPE_GROUP_AUDIO == type))\
 {\
 bRet = true;\
 }\

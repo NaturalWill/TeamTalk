@@ -320,8 +320,10 @@ bool MsgType_IsValid(int value) {
   switch(value) {
     case 1:
     case 2:
+    case 3:
     case 17:
     case 18:
+    case 19:
       return true;
     default:
       return false;
