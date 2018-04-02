@@ -57,7 +57,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)..\include;$(SolutionDir)..\include\utility;$(SolutionDir)..\3rdParty\src\json\include\;$(SolutionDir)..\3rdParty\src;$(SolutionDir)..\3rdParty\include;$(SolutionDir)\..\..\;$(SolutionDir)\..\core;$(SolutionDir)\..\..\TTServer\cpp</AdditionalIncludeDirectories>
     </ClCompile>
@@ -89,7 +89,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)..\include;$(SolutionDir)..\include\utility;$(SolutionDir)..\3rdParty\src\json\include\;$(SolutionDir)..\3rdParty\src;$(SolutionDir)..\3rdParty\include;$(SolutionDir)\..\..\;$(SolutionDir)\..\core;$(SolutionDir)\..\..\TTServer\cpp</AdditionalIncludeDirectories>
     </ClCompile>

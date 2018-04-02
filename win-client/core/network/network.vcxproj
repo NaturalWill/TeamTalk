@@ -55,7 +55,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NETWORK_EXPORTS;BUILD_PDU;CLIENT;_CRT_SECURE_NO_WARNINGS;YAOLOG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NETWORK_EXPORTS;BUILD_PDU;CLIENT;_CRT_SECURE_NO_WARNINGS;YAOLOG_EXPORTS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\3rdParty\src</AdditionalIncludeDirectories>
     </ClCompile>
@@ -78,7 +78,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETWORK_EXPORTS;BUILD_PDU;CLIENT;_CRT_SECURE_NO_WARNINGS;YAOLOG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETWORK_EXPORTS;BUILD_PDU;CLIENT;_CRT_SECURE_NO_WARNINGS;YAOLOG_EXPORTS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)..\include;$(SolutionDir)..\3rdParty\src</AdditionalIncludeDirectories>
     </ClCompile>

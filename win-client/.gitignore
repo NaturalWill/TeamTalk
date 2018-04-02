@@ -287,3 +287,7 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /users
+
+/src/GifSmiley/vc140.idl
+/src/GifSmiley/vc140.h
+
