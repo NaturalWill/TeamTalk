@@ -118,6 +118,7 @@ class Group extends TT_Controller {
 			'user_id_list'  => array(intval($this->input->post('userId')))
 		);                  
 	    $res = $this->httpRequest($this->config->config['http_url'].'/query/ChangeMembers','post',json_encode($add));
+        echo $res;
 	}
 
 	public function httpRequest($url,$method,$params=array()){
