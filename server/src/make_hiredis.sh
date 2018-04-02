@@ -2,7 +2,7 @@
 # author: luoning
 # date: 03/24/2015
 
-HIREDIS=hiredis-master
+HIREDIS=hiredis-0.13.3
 CUR_DIR=
 
 check_user() {
@@ -63,7 +63,7 @@ get_cur_dir() {
 
 build_hiredis(){
     cd hiredis
-    unzip $HIREDIS.zip
+    tar -xvf $HIREDIS.tar.gz
     cd $HIREDIS
     make
     cp -a libhiredis.a ../../db_proxy_server/

@@ -296,6 +296,11 @@ void CHttpQuery::_QueryChangeMember(const string& strAppKey, Json::Value &post_j
         pdu.SetServiceId(IM::BaseDefine::SID_GROUP);
         pdu.SetCommandId(IM::BaseDefine::CID_GROUP_CHANGE_MEMBER_REQUEST);
         pConn->SendPdu(&pdu);
+
+        char* response_buf = PackSendResult(HTTP_ERROR_SUCCESS, HTTP_ERROR_MSG[0].c_str());
+        pHttpConn->Send(response_buf, (uint32_t)strlen(response_buf));
+        pHttpConn->Close();
+        return;
     }
     catch (std::runtime_error msg)
     {
