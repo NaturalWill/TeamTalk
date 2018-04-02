@@ -25,6 +25,7 @@
 #include "SyncCenter.h"
 
 string strAudioEnc;
+string strExtEnc;
 // this callback will be replaced by imconn_callback() in OnConnect()
 void proxy_serv_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam)
 {
@@ -126,6 +127,16 @@ puts("db init success");
         strAudioEnc.append(pAudioEnc, nOutLen);
         cAes.Free(pAudioEnc);
     }
+
+	string strExt = "[链接]";
+	char* pExtEnc;
+	uint32_t nExtOutLen;
+	if(cAes.Encrypt(strExt.c_str(), strExt.length(), &pExtEnc, nExtOutLen) == 0)
+	{
+		strExtEnc.clear();
+		strExtEnc.append(pExtEnc, nExtOutLen);
+		cAes.Free(pExtEnc);
+	}
 
 	uint16_t listen_port = atoi(str_listen_port);
 	uint32_t thread_num = atoi(str_thread_num);

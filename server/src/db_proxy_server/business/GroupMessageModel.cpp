@@ -24,6 +24,7 @@
 using namespace std;
 
 extern string strAudioEnc;
+extern string strExtEnc;
 
 CGroupMessageModel *CGroupMessageModel::m_pInstance = NULL;
 
@@ -431,6 +432,9 @@ void CGroupMessageModel::getLastMsg(uint32_t nGroupId, uint32_t &nMsgId, string 
                 if (nMsgType == IM::BaseDefine::MSG_TYPE_GROUP_AUDIO) {
                     // "[语音]"加密后的字符串
                     strMsgData = strAudioEnc;
+                } else if (nMsgType == IM::BaseDefine::MSG_TYPE_GROUP_EXT){
+                    // "[语音]"加密后的字符串
+                    strMsgData = strExtEnc;
                 } else {
                     strMsgData = pResultSet->GetString("content");
                 }

@@ -23,6 +23,7 @@ using namespace std;
 
 CMessageModel* CMessageModel::m_pInstance = NULL;
 extern string strAudioEnc;
+extern string strExtEnc;
 
 CMessageModel::CMessageModel()
 {
@@ -312,6 +313,11 @@ void CMessageModel::getLastMsg(uint32_t nFromId, uint32_t nToId, uint32_t& nMsgI
                     {
                         // "[语音]"加密后的字符串
                         strMsgData = strAudioEnc;
+                    }
+                    else if (nMsgType == IM::BaseDefine::MSG_TYPE_SINGLE_EXT)
+                    {
+                        // "[语音]"加密后的字符串
+                        strMsgData = strExtEnc;
                     }
                     else
                     {
